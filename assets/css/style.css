@@ -6,3 +6,27 @@
 .text-page{max-width:900px;padding:clamp(4rem,8vw,8rem) var(--pad) 7rem;margin:auto}.text-page section{padding:0}.text-page .bi-block{max-width:760px}.text-page .bi-block p{margin:0 0 1.3rem;word-break:keep-all}.text-page .bi-block.en{color:var(--muted);font-size:.94rem}.bi-divider{border-top:1px solid var(--line);padding-top:1rem;margin:3.5rem 0 2rem;text-align:right;color:var(--muted);font-size:.72rem;letter-spacing:.12em}.cv-group{margin:4rem 0}.cv-group h2{font:500 1.1rem var(--serif);margin:0 0 1.6rem}.cv-entry{display:grid;grid-template-columns:6rem 1fr;gap:1.5rem;padding:1.15rem 0;border-top:1px solid var(--line)}.cv-entry:last-child{border-bottom:1px solid var(--line)}.cv-entry .year{font-variant-numeric:tabular-nums;color:var(--muted)}.cv-entry p{margin:0!important}.cv-entry .en{font-style:italic;color:var(--muted);font-size:.91rem}.site-footer{border-top:1px solid var(--line);padding:2.5rem var(--pad);display:flex;justify-content:space-between;gap:2rem;color:var(--muted);font-size:.75rem}.site-footer span:first-child{font-family:var(--serif);font-size:.9rem;color:var(--ink)}:focus-visible{outline:2px solid #272a28;outline-offset:4px}
 @media(max-width:850px){.home-hero{grid-template-columns:1fr}.home-copy{min-height:430px}.home-copy h1{margin:2rem 0 1rem}.home-copy p{margin-bottom:2rem}.home-image{min-height:52vw;max-height:650px}.home-intro{align-items:flex-start;flex-direction:column}.work-row,.work-row:nth-of-type(even){grid-template-columns:1fr;gap:1.5rem}.work-row:nth-of-type(even) .work-image,.work-row:nth-of-type(even) .work-copy{grid-column:auto;grid-row:auto}.work-image img{height:auto;max-height:560px;object-fit:contain}.work-copy p{margin-bottom:1.3rem}}@media(max-width:560px){.site-header{align-items:flex-start;flex-direction:column;gap:.75rem}.site-nav{width:100%;justify-content:space-between}.site-nav a{font-size:.82rem}.home-copy{min-height:400px}.home-image{min-height:320px}.page-heading{padding-bottom:2rem}.works-divider{display:block}.works-divider span{display:block}.works-divider span:last-child{margin-top:.45rem}.cv-entry{grid-template-columns:1fr;gap:.2rem}.site-footer{flex-direction:column;gap:.5rem}.plate{margin-bottom:4.5rem}.plate img{max-height:82vh}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.work-image img{transition:none}}
 .author-portrait{width:min(100%,360px);margin:2rem 0 3rem}.author-portrait img{width:100%;height:auto}
+
+/* The generated pages use a plain nav element inside the site header. */
+.site-header nav{display:flex;align-items:center;gap:clamp(1.5rem,3vw,3rem)}
+.site-header nav a{font-size:.88rem;letter-spacing:.03em;white-space:nowrap;padding:.35rem 0;border-bottom:1px solid transparent}
+.site-header nav a[aria-current=page],.site-header nav a:hover{border-color:var(--ink)}
+
+/* Keep the biographical and exhibition headings quieter than the photographs. */
+.text-page .page-title{font-size:clamp(1.8rem,2.8vw,2.65rem);line-height:1.4;margin:0 0 2rem}
+
+/* Two photographs form each spread, shortening the long series scroll. */
+.sequence{max-width:1400px;margin:0 auto;padding:0 var(--pad) 7rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(2rem,4vw,4rem) clamp(1.5rem,3vw,3rem);align-items:start}
+.sequence .plate,.sequence .plate.portrait{width:100%;max-width:none;margin:0}
+.sequence .plate img{width:100%;height:auto;max-height:62svh;object-fit:contain}
+.sequence .plate figcaption{padding-top:.6rem}
+.sequence .sequence-chapter{grid-column:1/-1;margin:2rem auto 1rem}
+
+@media(max-width:700px){
+  .sequence{grid-template-columns:1fr;gap:3rem;padding-bottom:5rem}
+  .sequence .plate img{max-height:76svh}
+}
+@media(max-width:560px){
+  .site-header nav{width:100%;justify-content:space-between;gap:1rem}
+  .site-header nav a{font-size:.82rem}
+}
