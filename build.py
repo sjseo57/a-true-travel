@@ -68,13 +68,13 @@ def header(depth=0, current=""):
         f'<a href="{p}works/{s["slug"]}.html"><span>{escape(s["ko"])}</span><small lang="en">{escape(s["en"])}</small></a>'
         for i, s in enumerate(SERIES)
     )
-    nav = f'<div class="nav-works"><a href="{p}works.html"' + (' aria-current="page"' if current == 'Works' else '') + f'>Works</a><button class="works-toggle" type="button" aria-label="작업 목록 펼치기" aria-expanded="false" aria-controls="works-submenu">⌄</button><div class="works-menu" id="works-submenu">{menu}</div></div>'
+    nav = f'<div class="nav-works"><a href="{p}works.html"' + (' aria-current="page"' if current == 'Works' else '') + f'>Works</a><button class="works-toggle" type="button" aria-label="작업 목록 펼치기" aria-expanded="false" aria-controls="works-submenu">⌄</button><div class="works-menu" id="works-submenu" hidden>{menu}</div></div>'
     nav += "".join(f'<a href="{p}{url}"' + (' aria-current="page"' if title == current else '') + f'>{title}</a>' for title,url in links)
     return f'''<header class="site-header"><a class="wordmark" href="{p}index.html" aria-label="A True Travel, home">A True Travel</a><nav aria-label="Main navigation">{nav}</nav></header>'''
 
 def page(title, body, depth=0, current="", description=""):
     p = "../" * depth
-    return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="{escape(description or title, quote=True)}"><title>{escape(title)} — A True Travel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="{p}assets/css/style.css"><script src="{p}assets/js/navigation.js" defer></script></head><body><a class="skip-link" href="#main">본문으로 이동</a>{header(depth,current)}<main id="main">{body}</main><footer class="site-footer"><span>A True Travel</span><span>© 2026 Seo Seok-Jang. All photographs and texts reserved.</span></footer></body></html>'''
+    return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="{escape(description or title, quote=True)}"><title>{escape(title)} — A True Travel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="{p}assets/css/style.css?v=20260926-11"><script src="{p}assets/js/navigation.js?v=20260926-11" defer></script></head><body><a class="skip-link" href="#main">본문으로 이동</a>{header(depth,current)}<main id="main">{body}</main><footer class="site-footer"><span>A True Travel</span><span>© 2026 Seo Seok-Jang. All photographs and texts reserved.</span></footer></body></html>'''
 
 def paras(items, lang):
     return f'<div class="statement" lang="{lang}">' + ''.join(f'<p>{escape(x)}</p>' for x in items) + '</div>'
@@ -123,7 +123,9 @@ def main():
         if name == 'exhibitions':
             content=content.replace('<div class="text-page">','<div class="text-page exhibitions-page">',1)
         if name=='about':
-            content=content.replace('</h1>', '</h1><figure class="author-portrait"><img src="assets/images/profile-sjseo.jpg" alt="사진작가 서석장 흑백 인물 사진" width="1855" height="2400" loading="lazy"></figure>', 1)
+            content=content.replace('<div class="text-page">','<div class="text-page about-page">',1)
+            content=content.replace('</h1>', '</h1><div class="about-intro"><figure class="author-portrait"><img src="assets/images/profile-sjseo.jpg" alt="사진작가 서석장 흑백 인물 사진" width="1855" height="2400" loading="eager"></figure>', 1)
+            content=content.replace('<div class="bi-divider">','</div><div class="bi-divider">',1)
         (ROOT/f'{name}.html').write_text(page(title,content,current=title),encoding='utf-8')
     contact='''<div class="text-page contact-page"><span class="eyebrow">Inquiries</span><h1 class="page-title">Contact</h1><p>전시, 소장, 출판 및 프로젝트 협업 문의는 이메일로 연락해 주세요.</p><p lang="en">For exhibition, collection, publishing, and project inquiries, please write by email.</p><a class="contact-email" href="mailto:sj.seo57@gmail.com">sj.seo57@gmail.com</a><p class="contact-note">서석장 · Seo Seok-Jang</p></div>'''
     (ROOT/'contact.html').write_text(page('Contact',contact,current='Contact',description='서석장 사진작가 전시 및 출판 문의'),encoding='utf-8')

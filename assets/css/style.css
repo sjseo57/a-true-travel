@@ -100,6 +100,7 @@
 .works-toggle{margin-left:.15rem;padding:.25rem .35rem;border:0;background:transparent;color:var(--muted);font:1.1rem/1 var(--sans);cursor:pointer}
 .works-toggle:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .works-menu{position:absolute;top:100%;left:-1.1rem;z-index:20;width:min(290px,calc(100vw - 2rem));max-height:min(70svh,550px);overflow:auto;padding:.8rem 1rem 1rem;background:var(--bg);border:1px solid var(--line);box-shadow:0 12px 24px #20211f1c;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(6px);transition:opacity .16s ease,transform .16s ease,visibility .16s}
+.works-menu[hidden]{display:none}
 .nav-works:hover .works-menu,.nav-works:focus-within .works-menu,.nav-works.is-open .works-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
 .site-header nav .works-menu a{display:block;border:0;padding:.55rem .25rem;white-space:normal;font-size:.9rem;letter-spacing:0;line-height:1.4}
 .site-header nav .works-menu a:hover,.site-header nav .works-menu a:focus-visible{background:#e9eae6;color:var(--ink)}
@@ -123,4 +124,18 @@
 .exhibitions-page .cv-tag{font-size:.62rem;margin-bottom:.15rem}
 @media(max-width:560px){
   .exhibitions-page .cv-entry,.exhibitions-page .cv-entry:last-child{grid-template-columns:1fr;gap:.15rem}
+}
+
+/* About: the portrait is a small introduction beside the Korean statement. */
+.about-page{max-width:1000px}
+.about-page .page-title{font-size:clamp(1.4rem,2vw,1.75rem);line-height:1.4;margin-bottom:1.4rem}
+.about-intro{display:grid;grid-template-columns:5.4rem minmax(0,1fr);gap:clamp(1.1rem,2.6vw,2rem);align-items:start}
+.about-page .author-portrait{float:none;width:5.4rem;margin:0}
+.about-page .author-portrait img{display:block;width:5.4rem;height:7rem;object-fit:cover}
+.about-page .bi-block p{line-height:1.6;margin-bottom:1rem}
+.about-page .bi-divider{margin:2rem 0 1.4rem}
+@media(max-width:480px){
+  .about-intro{grid-template-columns:4.6rem minmax(0,1fr);gap:1rem}
+  .about-page .author-portrait,.about-page .author-portrait img{width:4.6rem}
+  .about-page .author-portrait img{height:6rem}
 }
