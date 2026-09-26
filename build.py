@@ -14,61 +14,61 @@ SERIES = [
          cover="sea-in-me/sea-in-me-11.jpg", folder="sea-in-me", prefix="sea-in-me",
          intro_ko=[
              "기록되지 않은 것은 사라지기에, 변해가는 바다의 오늘을 카메라에 담아왔다.",
-             "내가 사랑하는 바다는 고요한 본연의 모습을 간직한 곳이다. 어부의 노랫가락이 들리는 평화로운 수평선 너머에는 치열한 삶의 현장이 공존하지만, 바다는 그 모든 거칠고 고단한 시간을 묵묵히 품어 안는다.",
-             "바다 앞에 서면 살아가며 마주한 환희와 후회, 말로 다 전하지 못한 마음을 가감 없이 내려놓게 된다. 오랫동안 바라본 바다는 어느새 풍경을 넘어 나의 기억과 시간을 비추는 내면의 장소가 되었다.",
+             "평화로운 수평선 너머에는 어부의 생업이 있다. 파도와 날씨가 어제의 모습을 지우는 동안, 나는 다시 오지 않을 오늘의 바다를 바라본다.",
+             "바다 앞에 서면 살아가며 마주한 환희와 후회, 말로 다 전하지 못한 마음을 내려놓게 된다. 매번 달라지는 수면을 찍는 일은 동시에 내 안의 변화를 확인하는 일이었다.",
              "나는 어머니의 품을 닮은 그 깊고 푸른 위로와, 그 안에서 마주한 나 자신의 모습을 사진이라는 문장으로 기록하고자 한다."],
          intro_en=[
              "What is not recorded eventually disappears. Through my camera, I have sought to preserve the sea as it changes from one day to the next.",
-             "The sea I love retains a quiet, essential presence. Beyond the peaceful horizon, where fishermen’s songs can be heard, life unfolds with urgency. Yet the sea silently embraces all its roughness, hardship, and passing time.",
-             "Standing before the sea, I find myself releasing the joys, regrets, and unspoken feelings gathered through life. Over the years, the sea has become more than a landscape; it has become an inward place where my memories and sense of time are reflected.",
+             "Beyond the peaceful horizon lies the work of fishing. As waves and weather erase yesterday’s appearance, I look at a sea that will never be quite the same again.",
+             "Standing before it, I release joys, regrets, and feelings I cannot put into words. Photographing the changing surface has also become a way of noticing change within myself.",
              "Through photography, I seek to record its deep blue consolation, reminiscent of a mother’s embrace, and the image of myself encountered within it."]),
     dict(slug="traces-of-prayer", ko="기도의 흔적들", en="Traces of Prayer", category="Works",
          cover="traces-of-prayer/traces-of-prayer-10.jpg", folder="traces-of-prayer", prefix="traces-of-prayer",
-         intro_ko=["사람들은 돌을 쌓고 촛불을 밝히며, 동전과 지폐, 기원문에 말로 다 전하지 못한 마음을 맡긴다.",
-                   "나는 기도하는 사람보다 그들이 떠난 뒤 남은 사물과 공간을 바라보았다. 이 사진들은 보이지 않는 간절함이 돌탑과 연등, 작은 헌금에 머물다가 침묵으로 이어지는 시간을 기록한다."],
-         intro_en=["People stack stones, light candles, and leave coins, banknotes, and written wishes, entrusting them with feelings that cannot be fully expressed in words.",
-                   "Rather than photographing those who pray, I looked at the objects and spaces left behind. These photographs record the time in which invisible longing lingers in stone cairns, lanterns, and small offerings before returning to silence."]),
+         intro_ko=["사람들은 돌을 쌓고 촛불을 밝히며, 동전과 지폐, 기원문에 말로 다 전하지 못한 바람을 맡긴다.",
+                   "나는 기도하는 얼굴보다 손이 놓고 간 사물을 바라보았다. 돌탑과 연등, 작은 헌금은 주인이 떠난 뒤에도 누군가의 간절함을 가리킨다. 사람은 화면 밖에 있지만, 그가 행한 기도는 사물의 배열 속에 남는다."],
+         intro_en=["People stack stones, light candles, and leave coins, banknotes, and written wishes, entrusting them with hopes they cannot fully express.",
+                   "I looked toward what hands had left behind rather than toward the faces of those praying. Stone cairns, lanterns, and small offerings point to a wish even after its maker has gone. The person remains outside the frame; the act of prayer is visible in the arrangement of things."]),
     dict(slug="silence-temple", ko="산사의 고요함", en="Silence of the Mountain Temple", category="Works",
          cover="silence-temple/silence-temple-15.jpg", folder="silence-temple", prefix="silence-temple",
-         intro_ko=["산사로 들어가는 길에서 시간은 느려진다. 숲을 지나 전각을 발견하고, 문과 마당을 통과하는 동안 일상의 소음은 점차 멀어진다.",
-                   "나는 산사의 건축을 설명하기보다 그 공간을 채우는 침묵과 시간을 바라본다. 처마 아래의 빛과 문틈의 어둠, 비어 있는 마당과 오래된 나무에는 수많은 사람이 머물다 간 시간이 남아 있다.",
-                   "때때로 나타나는 사람의 작은 기척마저 자연과 건축 안으로 스며든다. 이 사진들은 산사의 외형이 아니라, 그 안에서 잠시 마주한 고요의 깊이를 기록한다."],
-         intro_en=["Time slows along the path into a mountain temple. As I pass through the forest, encounter temple halls, and cross gates and courtyards, the noise of everyday life gradually recedes.",
-                   "Rather than describing temple architecture, I look toward the silence and time that inhabit these spaces. Light beneath the eaves, darkness within doorways, empty courtyards, and old trees retain the traces of countless people who have passed through.",
-                   "Even the occasional presence of a person dissolves into nature and architecture. These photographs record not the outward appearance of the temple, but the depth of stillness briefly encountered within it."]),
+         intro_ko=["숲길에서 문으로, 문에서 마당으로 들어간다. 산사의 공간은 한 번에 드러나지 않고, 경계를 지날 때마다 시선의 속도를 바꾼다.",
+                   "처마 아래의 빛과 문틈의 어둠, 아무도 없는 마당을 따라가다 보면 비어 있음은 결핍이 아니라 바라볼 여백이 된다.",
+                   "이 작업은 사찰의 건축을 목록처럼 보여주기보다, 안과 밖을 오가는 동선과 잠시 멈추게 하는 빈 공간을 따라간다."],
+         intro_en=["From forest path to gate, and from gate to courtyard, the temple does not reveal itself at once. Each threshold changes the pace of looking.",
+                   "Light beneath the eaves, darkness inside a doorway, and an unoccupied courtyard make emptiness feel less like an absence than a space in which to look.",
+                   "Rather than cataloguing temple buildings, this series follows movement between inside and outside and the open spaces that ask me to pause."]),
     dict(slug="gaya-tumuli", ko="가야고분군", en="Gaya Tumuli", category="Korean Cultural Heritage",
          cover="gaya-tumuli/Gaya_Tumuli-09.jpg", folder="gaya-tumuli", prefix="Gaya_Tumuli",
-         intro_ko=["가야의 고분은 과거에 멈춘 유적이 아니다. 마을과 들판, 현대의 건물들 사이에서 사람들이 걷고 놀고 머무는 살아 있는 풍경이다.",
-                   "사람들이 멀어지면 고분은 다시 나무와 산, 안개와 빛의 리듬으로 돌아간다. 이 작업은 오래된 땅과 오늘의 삶이 공존하는 모습, 그리고 천년의 풍경 속에 인간의 짧은 시간이 잠시 머무는 순간을 바라본다."],
-         intro_en=["The tumuli of Gaya are not relics suspended in the past. Surrounded by villages, fields, and modern buildings, they remain living landscapes where people walk, play, and pause in their everyday lives.",
-                   "When the people recede, the ancient mounds return to the rhythms of trees, mountains, mist, and light. This work observes the quiet coexistence of ancient ground and contemporary life—and the brief moments when human time enters a thousand-year-old landscape."]),
+         intro_ko=["가야고분군은 박물관 안의 유물이 아니라 마을과 들판, 현대의 건물에 맞닿은 지형이다. 사람들이 걷고 놀고 지나가는 길 곁에 봉분이 놓인다.",
+                   "사람이 프레임에서 사라지면 나무와 안개, 빛이 같은 언덕의 표정을 바꾼다. 이 연작은 고분을 과거의 증거로만 보지 않고, 오늘의 일상과 접촉하는 장소로 바라본다."],
+         intro_en=["The Gaya tumuli are not objects enclosed in a museum. They are a terrain beside villages, fields, and modern buildings, with burial mounds near paths where people walk, play, and pass by.",
+                   "When people leave the frame, trees, mist, and light alter the appearance of the same hills. This series looks at the tumuli as places in contact with everyday life, beyond their role as evidence of the past."]),
     dict(slug="royal-tombs", ko="왕릉과 고분", en="Royal Tombs and Tumuli", category="Korean Cultural Heritage",
          cover="royal-tombs/bw/Royal-Tombs-Tumuli-07.jpg", folder="royal-tombs", prefix="Royal-Tombs-Tumuli",
-         intro_ko=["왕릉과 고분은 죽은 자를 위한 무덤이면서, 오랜 시간 살아 있는 풍경이기도 합니다. 산의 능선을 닮은 봉분들은 도시와 들판 사이에서 계절을 지나고, 나무와 새, 그곳을 돌보는 사람들의 삶과 함께 오늘까지 이어집니다.",
-                   "작업의 전반부는 선명한 흑백사진으로 고분의 실제 풍경과 형태를 바라봅니다. 산과 봉분, 나무와 인간이 한 공간에 놓이며, 고분은 과거에 멈춘 유적이 아니라 현재의 삶과 호흡하는 존재로 나타납니다.",
-                   "후반부에서 풍경은 거친 입자로 변화합니다. 선명했던 형태는 점차 기억처럼 흐려지고, 봉분과 나무와 사람은 시간의 입자 속으로 스며듭니다. 마지막에 남는 문과 봉분은 삶과 죽음, 현재와 과거 사이의 조용한 경계를 보여줍니다."],
-         intro_en=["Royal tombs and ancient tumuli are resting places for the dead, yet they also remain living landscapes shaped by time. Resembling the ridgelines of distant mountains, the burial mounds endure through changing seasons, sharing the present with trees, birds, surrounding towns, and the people who continue to care for them.",
-                   "The first part of the series observes the physical presence of the tombs through clear black-and-white photographs. Mountains, burial mounds, trees, and human figures inhabit the same space, revealing these sites not as relics suspended in the past, but as living places that continue to breathe within the rhythms of contemporary life.",
-                   "In the latter part, the visible landscape gradually dissolves into coarse particles. Once-distinct forms become blurred like memories, while the mounds, trees, and human traces merge into the grain of accumulated time. The final images of a doorway and a burial mound suggest a quiet threshold between life and death, the present and the past."]),
+         intro_ko=["왕릉과 고분의 봉분은 산의 능선을 닮았지만, 그 형태를 선명히 보여주는 것만으로는 이 장소를 다 말할 수 없다.",
+                   "전반부의 흑백사진은 봉분과 나무, 사람의 크기와 거리를 또렷하게 드러낸다. 후반부에서는 같은 풍경을 거친 입자로 바꾸어 형태가 흩어지는 과정을 보여준다.",
+                   "두 표현의 차이는 무엇을 볼 수 있고 무엇을 기억하게 되는가를 묻는다. 마지막에 남는 문과 봉분은 보이는 풍경과 사라진 존재 사이에 놓인 경계처럼 다가온다."],
+         intro_en=["The contours of royal tombs and ancient tumuli resemble mountain ridgelines, but a clear depiction of their form cannot tell the whole story of these places.",
+                   "The opening black-and-white photographs show the scale and distance between burial mounds, trees, and people. In the latter part, the same landscape becomes coarse grain, and its distinct forms begin to break apart.",
+                   "The shift between these two modes asks what can be seen and what stays in memory. The final doorway and mound suggest a threshold between the visible landscape and those no longer present."]),
     dict(slug="seowon-hyanggyo", ko="한국의 서원과 향교", en="Seowon and Hyanggyo of Korea", category="Korean Cultural Heritage",
          cover="seowon-hyanggyo/Seowon-Hyanggyo-11.jpg", folder="seowon-hyanggyo", prefix="Seowon-Hyanggyo",
-         intro_ko=["서원과 향교는 건축물로 남아 있지만, 그 공간의 본질은 오랫동안 이어져 온 배움과 의례, 그리고 사람들의 움직임 속에 있다.",
-                   "나는 전각의 형태를 기록하는 데 머물지 않고, 문과 마당, 제향을 준비하는 손과 몸짓, 비어 있는 공간에 남은 시간의 결을 바라보았다. 자연과 건축, 의례와 일상이 만나는 순간을 통해 과거가 오늘의 삶 안에서 어떻게 지속되는지를 기록하고자 했다.",
-                   "일부 작품은 서로 다른 시선과 시간을 한 화면에 병치한 딥틱으로 구성했다. 부분과 전체, 내부와 외부, 의례의 움직임과 공간의 침묵이 서로 응답하도록 했다."],
-         intro_en=["Seowon and hyanggyo remain as architecture, yet their essence lies in the traditions of learning, ritual, and human movement that have continued within them over time.",
-                   "Rather than merely documenting their structures, I looked toward gates and courtyards, hands and gestures preparing for ancestral rites, and the texture of time retained in empty spaces. Through moments in which nature and architecture, ritual and daily life meet, these photographs consider how the past continues within the present.",
-                   "Several works are composed as diptychs, bringing different viewpoints and moments together within a single frame. Detail and whole, interior and exterior, ritual movement and spatial silence respond to one another."])
+         intro_ko=["서원과 향교에서 배움과 제향은 건물의 이름만으로 설명되지 않는다. 문을 열고 마당을 건너며 의례를 준비하는 몸짓 속에서 전통은 지금도 실행된다.",
+                   "나는 전각 전체와 손의 동작, 내부와 외부를 번갈아 보았다. 일부 사진을 딥틱으로 묶은 까닭은 한 장면만으로는 건축과 행위의 관계를 다 보여줄 수 없기 때문이다.",
+                   "이 연작은 옛 건물을 보존된 형태로만 제시하지 않고, 사람들이 그 안에서 배우고 모이고 예를 행하는 방식에 주목한다."],
+         intro_en=["At seowon and hyanggyo, learning and ancestral rites cannot be understood from the names of buildings alone. Tradition is enacted in opening a gate, crossing a courtyard, and preparing a ceremony.",
+                   "I move between the whole hall and the gesture of a hand, between interior and exterior. Some photographs form diptychs because a single view cannot fully show the relationship between architecture and action.",
+                   "This series considers historic buildings through the ways people learn, gather, and perform rites within them, beyond their preserved form."])
 ]
 
 def header(depth=0, current=""):
     p = "../" * depth
-    links = [("Works", "works.html"), ("About", "about.html"), ("Exhibitions", "exhibitions.html")]
+    links = [("Works", "works.html"), ("About", "about.html"), ("Exhibitions", "exhibitions.html"), ("Contact", "contact.html")]
     nav = "".join(f'<a href="{p}{url}"' + (' aria-current="page"' if title == current else '') + f'>{title}</a>' for title,url in links)
     return f'''<header class="site-header"><a class="wordmark" href="{p}index.html" aria-label="A True Travel, home">A True Travel</a><nav aria-label="Main navigation">{nav}</nav></header>'''
 
 def page(title, body, depth=0, current="", description=""):
     p = "../" * depth
-    return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="{escape(description or title, quote=True)}"><title>{escape(title)} — A True Travel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="{p}assets/css/style.css"></head><body><a class="skip-link" href="#main">본문으로 이동</a>{header(depth,current)}<main id="main">{body}</main><footer class="site-footer"><span>A True Travel</span><span>© 2026 Seo Seok-Jang. All photographs and texts reserved.</span></footer></body></html>'''
+    return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="{escape(description or title, quote=True)}"><title>{escape(title)} — A True Travel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="{p}assets/css/style.css"></head><body><a class="skip-link" href="#main">본문으로 이동</a>{header(depth,current)}<main id="main">{body}</main><footer class="site-footer"><span>A True Travel</span><span>© 2026 Seo Seok-Jang. All photographs and texts reserved.</span></footer></body></html>'''
 
 def paras(items, lang):
     return f'<div class="statement" lang="{lang}">' + ''.join(f'<p>{escape(x)}</p>' for x in items) + '</div>'
@@ -105,7 +105,7 @@ def work_row(s):
 def main():
     (ROOT/'works').mkdir(exist_ok=True)
     for i,s in enumerate(SERIES): gallery(s,SERIES[(i+1)%len(SERIES)])
-    home='''<section class="home-hero"><div class="home-copy"><span class="eyebrow">Photography by Seo Seok-Jang</span><h1>고요와 시간,<br>기억과 인간의 흔적</h1><p lang="en">Silence, Time, Memory, and Human Traces</p><a class="view-link" href="works.html">작업 보기 <span aria-hidden="true">↗</span></a></div><figure class="home-image"><img src="assets/images/sea-in-me/sea-in-me-11.jpg" alt="파도가 바위에 스며드는 흑백 바다 풍경" width="2400" loading="eager"><figcaption>내 안의 바다 / The Sea in Me</figcaption></figure></section><section class="home-intro"><p>바다와 산사, 기도의 흔적과 오래된 땅.<br>한 장소에 머물며, 그곳에 남은 시간을 바라봅니다.</p><a href="works.html">Selected works <span aria-hidden="true">↗</span></a></section>'''
+    home='''<section class="home-hero"><div class="home-copy"><span class="eyebrow">Photography by Seo Seok-Jang</span><h1>고요와 시간,<br>기억과 인간의 흔적</h1><p class="home-subtitle" lang="en">Silence, Time, Memory, and Human Traces</p><div class="home-manifesto"><p>진짜 여행은 가장 먼 곳이 아니라,<br>가장 오래 머문 자리에서 시작된다.</p><p lang="en">A true travel begins not in the farthest place,<br>but in the place where one has stayed the longest.</p></div><a class="view-link" href="works.html">작업 보기 <span aria-hidden="true">↗</span></a></div><figure class="home-image"><img src="assets/images/sea-in-me/sea-in-me-11.jpg" alt="파도가 바위에 스며드는 흑백 바다 풍경" width="2400" loading="eager"><figcaption>내 안의 바다 / The Sea in Me</figcaption></figure></section><section class="home-intro"><div class="home-intro-copy"><p>바다와 산사, 기도의 흔적과 오래된 땅.<br>한 장소에 머물며, 그곳에 남은 시간을 바라봅니다.</p><p class="home-intro-en" lang="en">The sea, mountain temples, traces of prayer, and ancient ground.<br>I stay with each place and look at the time it holds.</p></div><a href="works.html">Selected works <span aria-hidden="true">↗</span></a></section>'''
     (ROOT/'index.html').write_text(page('서석장 사진 아카이브',home,description='사진작가 서석장의 작품 아카이브. 바다, 산사, 기도의 흔적, 한국의 문화유산.'),encoding='utf-8')
     works='''<div class="page-heading"><span class="eyebrow">Archive</span><h1>Works</h1><p>고요와 시간, 기억과 인간의 흔적을 바라보는 사진 프로젝트.</p></div><section class="works-list" aria-label="사진 프로젝트">'''+''.join(work_row(s) for s in SERIES[:3])+'''<div class="works-divider"><span>한국의 문화유산</span><span lang="en">Korean Cultural Heritage</span></div>'''+''.join(work_row(s) for s in SERIES[3:])+'</section>'
     (ROOT/'works.html').write_text(page('Works',works,current='Works',description='서석장의 사진 프로젝트 6개와 작품 95점.'),encoding='utf-8')
@@ -117,7 +117,7 @@ def main():
         if name=='about':
             content=content.replace('</h1>', '</h1><figure class="author-portrait"><img src="assets/images/profile-sjseo.jpg" alt="사진작가 서석장 흑백 인물 사진" width="1855" height="2400" loading="lazy"></figure>', 1)
         (ROOT/f'{name}.html').write_text(page(title,content,current=title),encoding='utf-8')
-    # The draft contact page contains an unverified mailbox and a '#' Instagram link.
-    (ROOT/'contact.html').unlink(missing_ok=True)
+    contact='''<div class="text-page contact-page"><span class="eyebrow">Inquiries</span><h1 class="page-title">Contact</h1><p>전시, 소장, 출판 및 프로젝트 협업 문의는 이메일로 연락해 주세요.</p><p lang="en">For exhibition, collection, publishing, and project inquiries, please write by email.</p><a class="contact-email" href="mailto:sj.seo57@gmail.com">sj.seo57@gmail.com</a><p class="contact-note">서석장 · Seo Seok-Jang</p></div>'''
+    (ROOT/'contact.html').write_text(page('Contact',contact,current='Contact',description='서석장 사진작가 전시 및 출판 문의'),encoding='utf-8')
 
 if __name__=='__main__': main()
