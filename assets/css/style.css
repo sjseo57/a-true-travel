@@ -57,3 +57,70 @@
 @media(max-width:850px){.home-copy{min-height:0}.home-manifesto{margin:2rem 0}}
 .home-intro-copy{min-width:0}
 .home-intro .home-intro-en{margin:1.15rem 0 0;color:var(--muted);font:italic clamp(.9rem,1.15vw,1.02rem)/1.8 Georgia,serif;letter-spacing:0}
+
+/* At normal desktop zoom, let the photograph and both parts of the opening
+   statement share the first viewport. Long archives still scroll naturally. */
+@media (min-width:1100px){
+  .home-hero{height:clamp(500px,calc(100svh - 290px),640px);min-height:0}
+  .home-copy{padding-top:1.25rem;padding-bottom:1.25rem}
+  .home-copy h1{font-size:clamp(2.2rem,3vw,3.1rem);line-height:1.42;margin:1.05rem 0 .45rem}
+  .home-manifesto{margin:clamp(1.3rem,2.8vh,2rem) 0 1.35rem;padding-top:1.15rem}
+  .home-manifesto p:first-child{line-height:1.6}
+  .home-manifesto p[lang=en]{margin-top:.45rem;line-height:1.55}
+  .home-image{min-height:0}
+  .home-intro{max-width:none;min-height:185px;padding:1.5rem var(--pad);align-items:center}
+  .home-intro p{font-size:clamp(1.08rem,1.65vw,1.5rem);line-height:1.48}
+  .home-intro .home-intro-en{margin-top:.45rem;line-height:1.45}
+}
+
+/* Make the first project, photograph, or CV entry visible without requiring
+   an initial scroll through oversized page headings. */
+@media (min-width:851px){
+  .page-heading{padding-top:clamp(2rem,4vh,3rem);padding-bottom:1.5rem}
+  .page-heading h1{margin:.45rem 0 .65rem}
+  .work-row{padding:clamp(1.5rem,3vw,3rem) 0}
+  .work-image img{height:clamp(250px,26vw,370px)}
+  .works-divider{padding:2.5rem 0 1.8rem}
+  .series-heading{padding-top:clamp(2rem,4vh,3rem);padding-bottom:1rem}
+  .back-link{margin-bottom:1.25rem}
+  .series-heading h1{margin:.45rem 0 .25rem}
+  .series-statement{max-width:1200px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);padding-bottom:2.5rem}
+  .series-statement .statement{margin-top:1rem}
+  .series-statement .statement p{margin-bottom:.75rem;font-size:.94rem;line-height:1.65}
+  .series-statement .statement[lang=en]{border-top:0;border-left:1px solid var(--line);padding:0 0 0 clamp(1.5rem,3vw,3rem);font-size:.92rem}
+  .text-page{padding-top:clamp(2rem,4vh,3rem)}
+  .text-page .page-title{margin-bottom:1.5rem}
+  .text-page .cv-group:first-of-type{margin-top:2rem}
+  .author-portrait{float:right;width:min(36%,280px);margin:0 0 1.5rem 2.5rem}
+}
+
+/* The Works link opens the complete archive; the adjacent control and hover
+   expose direct links to all six series. */
+.nav-works{position:relative;display:inline-flex;align-items:center;white-space:nowrap}
+.works-toggle{margin-left:.15rem;padding:.25rem .35rem;border:0;background:transparent;color:var(--muted);font:1.1rem/1 var(--sans);cursor:pointer}
+.works-toggle:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.works-menu{position:absolute;top:100%;left:-1.1rem;z-index:20;width:min(290px,calc(100vw - 2rem));max-height:min(70svh,550px);overflow:auto;padding:.8rem 1rem 1rem;background:var(--bg);border:1px solid var(--line);box-shadow:0 12px 24px #20211f1c;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(6px);transition:opacity .16s ease,transform .16s ease,visibility .16s}
+.nav-works:hover .works-menu,.nav-works:focus-within .works-menu,.nav-works.is-open .works-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.site-header nav .works-menu a{display:block;border:0;padding:.55rem .25rem;white-space:normal;font-size:.9rem;letter-spacing:0;line-height:1.4}
+.site-header nav .works-menu a:hover,.site-header nav .works-menu a:focus-visible{background:#e9eae6;color:var(--ink)}
+.works-menu small{display:block;margin-top:.12rem;color:var(--muted);font:italic .77rem/1.4 Georgia,serif}
+.works-menu-label{display:block;margin:.45rem .25rem .2rem;padding-top:.8rem;border-top:1px solid var(--line);color:var(--muted);font-size:.71rem;letter-spacing:.05em}
+@media(max-width:560px){.works-menu{left:-.5rem}.works-toggle{padding:.25rem .1rem}}
+@media(prefers-reduced-motion:reduce){.works-menu{transition:none}}
+
+/* Keep the exhibition record compact enough to scan at 100% zoom. The
+   overseas venue is identified by its label without an extra border. */
+.exhibitions-page{max-width:1050px}
+.exhibitions-page .page-title{margin-bottom:1.2rem}
+.exhibitions-page .cv-group{margin:2.5rem 0}
+.exhibitions-page .cv-group h2,.exhibitions-page .cv-group.solo h2{font-size:1.02rem;margin-bottom:1rem}
+.exhibitions-page .cv-entry,.exhibitions-page .cv-entry:last-child{grid-template-columns:4.8rem minmax(0,1fr);gap:1.15rem;padding:.68rem 0;border:0;font-size:.92rem;line-height:1.5}
+.exhibitions-page .cv-entry .year{font-size:.86rem}
+.exhibitions-page .cv-entry .ko{font-size:.94rem;line-height:1.5}
+.exhibitions-page .cv-entry .en{font-size:.82rem;line-height:1.45;margin-top:.15rem!important}
+.exhibitions-page .cv-group.solo .featured .ko{font-size:1rem}
+.exhibitions-page .cv-entry.international{border-left:0;padding-left:0}
+.exhibitions-page .cv-tag{font-size:.62rem;margin-bottom:.15rem}
+@media(max-width:560px){
+  .exhibitions-page .cv-entry,.exhibitions-page .cv-entry:last-child{grid-template-columns:1fr;gap:.15rem}
+}
