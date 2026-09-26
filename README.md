@@ -1,53 +1,37 @@
-# A True Travel
+# A True Travel — 사진 아카이브
 
-서석장 작가의 사진 아카이브. Google Sites에서 벗어나 순수 HTML/CSS로 다시 제작한 미니멀 사이트 초안입니다.
+사진작가 서석장의 정적 HTML 사이트. 빌드 서버나 프레임워크 없이 GitHub Pages에서 제공됩니다. 현재 `www.atruetravel.com`은 Google Sites에 연결되어 있으므로 검수 브랜치에는 `CNAME`을 넣지 않았습니다.
 
-## 폴더 구조
+## 콘텐츠와 사진
 
-```
-/
-├── index.html                 홈
-├── about.html                 작가 소개 (국/영문 병기)
-├── works.html                 작업 목록
-├── works/
-│   └── sea-in-me.html          '내 안의 바다' 시리즈 상세 (샘플 — 나머지 3개 시리즈는 이 파일을 복제해서 만들면 됩니다)
-├── exhibitions.html            전시경력 (연도 기준 타임라인, 국/영문 한 항목에 병기)
-├── contact.html                연락처
-├── assets/
-│   └── css/style.css           디자인 시스템 (색상·타이포·레이아웃 전부 여기서 관리)
-└── CNAME                       커스텀 도메인(www.atruetravel.com) 연결용
-```
+- `content/about.html`, `content/exhibitions.html`: 기존 초안의 국·영문 작가 소개와 전시 이력 원문. 사실 관계와 표기는 공개 전 확인합니다.
+- `build.py`: 여섯 시리즈의 현 사이트 작품 설명과 순서를 보관하고 HTML을 생성합니다. 사진을 추가·교체할 때 `python3 build.py`를 실행합니다. Python 3과 Pillow가 필요합니다. 공개되는 결과는 순수 HTML/CSS입니다.
+- `assets/images/`: 제공된 Google Drive의 웹용 JPEG 95점과 프로필 사진 1개. **파일명을 바꾸지 않았습니다.** 시리즈 경로와 번호는 Drive와 같습니다. `보류` 폴더는 제외했습니다.
+- `works/royal-tombs.html`: 흑백 `01–08`, 점묘 `09–18` 순서로 구성합니다.
+- 사진의 촬영 장소·연도는 확인되지 않아 가공한 캡션을 만들지 않았습니다. 연속 번호만 표시합니다.
 
-## 아직 해야 할 일
+| 시리즈 | 저장 경로 | 장수 |
+|---|---|---:|
+| 내 안의 바다 | `assets/images/sea-in-me/` | 19 |
+| 기도의 흔적들 | `assets/images/traces-of-prayer/` | 18 |
+| 산사의 고요함 | `assets/images/silence-temple/` | 16 |
+| 가야고분군 | `assets/images/gaya-tumuli/` | 12 |
+| 왕릉과 고분 | `assets/images/royal-tombs/bw/`, `grain/` | 18 |
+| 서원과 향교 | `assets/images/seowon-hyanggyo/` | 12 |
 
-1. **이미지 교체**: 현재 `works.html`과 `works/sea-in-me.html`의 이미지는 기존 Google Sites에 올라가 있던 사진 URL을 임시로 가져다 쓴 것입니다(미리보기 용도). 실제 사진 파일을 `assets/images/` 아래에 직접 올려서 `<img src>`를 로컬 경로로 바꿔주세요. 외부(Google 서버) 링크에 계속 의존하면 나중에 그쪽 링크가 끊길 때 사이트 이미지가 전부 깨집니다.
-2. **나머지 시리즈 페이지 제작**: `기도의 흔적들`, `산사의 고요함`, `한국의 문화유산`(하위 3개 포함) 페이지를 `works/sea-in-me.html`을 복제해서 만들어주세요. 구조(제목 → 스테이트먼트 → 이미지 시퀀스 → 영문)는 동일하게 유지하면 됩니다.
-3. **캡션 채우기**: 각 사진의 `<figcaption>`에 임시로 "연도 미상"이라고 넣어뒀습니다. 실제 촬영 장소·연도로 교체해주세요.
-4. **컷 선별**: 지금 샘플은 9컷으로 줄여서 리듬을 만들었습니다. 실제 게재 시에도 시리즈당 8~12컷 내외로 선별하는 것을 권장합니다.
+대표작 경로는 `build.py`의 `cover` 필드에서 지정합니다. 프로필 사진은 About 페이지에 사용했습니다. 새 작품의 순서·선별은 작가가 결정합니다.
 
-## GitHub Pages로 배포하는 방법
+## 미리보기와 출판
 
-1. 이 폴더의 내용을 저장소(`sjseo57/a-true-travel`) 루트에 그대로 커밋 & 푸시합니다.
-   ```
-   git add .
-   git commit -m "Initial minimal site"
-   git push origin main
-   ```
-2. GitHub 저장소 페이지 → **Settings → Pages**로 이동합니다.
-3. **Source**를 `Deploy from a branch`로, 브랜치는 `main` / `/(root)`로 설정합니다.
-4. **Custom domain** 칸에 `www.atruetravel.com`을 입력하고 저장합니다. (저장소에 이미 포함된 `CNAME` 파일과 값이 일치해야 합니다.)
-5. 도메인을 구매한 곳(가비아, 후이즈 등)에서 DNS 설정을 GitHub Pages 안내에 맞게 변경합니다.
-   - `www` 서브도메인 → `CNAME` 레코드로 `sjseo57.github.io`를 가리키게 설정
-   - 기존에 Google Sites로 연결되어 있던 DNS 레코드가 있다면 삭제하거나 교체해야 합니다.
-6. 몇 분~몇 시간 후 `https://www.atruetravel.com`으로 접속하면 새 사이트가 표시됩니다. GitHub Pages 설정에서 **Enforce HTTPS**를 함께 체크해두세요.
+저장소 루트에서 `python3 -m http.server 8000`을 실행하고 `http://localhost:8000`을 엽니다. 프로젝트 기본 주소는 `https://sjseo57.github.io/a-true-travel/`입니다. 내부 링크는 상대 경로이므로 그 주소에서도 동작합니다.
 
-## 로컬에서 미리 보기
+**도메인 전환은 별도 작업입니다.** 모든 사진과 문안을 검수한 뒤 GitHub Pages에서 도메인 소유권을 확인하고 `www.atruetravel.com`을 설정합니다. 그때 루트에 `www.atruetravel.com`이 적힌 `CNAME`을 추가하고 DNS의 `www` 레코드를 `sjseo57.github.io`로 변경합니다. `atruetravel.com` 루트 도메인의 설정도 별도로 확인합니다. Google Sites는 전환 확인 전까지 유지합니다.
 
-별도 빌드 도구가 필요 없는 순수 정적 사이트입니다. 다만 `/assets/...`처럼 루트 기준 절대경로를 쓰고 있어서, 파일을 더블클릭해서 여는 것보다 아래처럼 로컬 서버를 띄워서 확인하는 것을 권장합니다.
+공개 전에 전시명·국영문 문안, 대표작, 작품 순서, 모바일 표시를 확인합니다. 기존 Google Sites의 작품 페이지 주소는 새 HTML 경로와 다르므로 기존 링크 공유 내역도 점검합니다. 초안의 미확인 이메일과 Instagram 링크는 공개 페이지에서 제외했습니다.
 
-```
-cd a-true-travel
-python3 -m http.server 8000
-```
+## GitHub Desktop으로 옮기기
 
-그 다음 브라우저에서 `http://localhost:8000` 접속.
+1. [GitHub Desktop](https://desktop.github.com/)에서 `sjseo57/a-true-travel` 저장소를 복제합니다.
+2. 이 압축파일을 풀고 **안쪽 `a-true-travel` 폴더의 내용**을 복제한 저장소 폴더에 복사합니다. 기존 파일은 교체하고, 기존 저장소에 남은 `CNAME`과 `contact.html`은 직접 삭제합니다. 압축파일 자체나 `.git` 폴더는 복사하지 않습니다.
+3. GitHub Desktop에서 변경 파일과 삭제된 `CNAME`, `contact.html`을 확인한 뒤 `Commit to main` → `Push origin`을 실행합니다. 사진은 95점 모두 있어야 합니다.
+4. 먼저 로컬에서 확인하거나 GitHub Pages의 임시 주소에서 검수합니다. 커스텀 도메인 설정은 사이트 검수 후 진행합니다.
