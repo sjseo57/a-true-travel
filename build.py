@@ -5,6 +5,9 @@ Run `python3 build.py` after adding or replacing a web JPEG. Requires Pillow.
 from pathlib import Path
 from html import escape
 from PIL import Image
+import os
+import shutil
+import tempfile
 
 ROOT = Path(__file__).resolve().parent
 IMG = ROOT / "assets/images"
@@ -188,7 +191,7 @@ def plate(f, i, s):
     # No fabricated place/year: a quiet plate number serves as a sequence marker.
     return f'''<figure class="plate {orientation}"><img src="../{rel}" width="{w}" height="{h}" alt="{escape(s['ko'])} 시리즈 작품 {i:02d}" loading="lazy" decoding="async"><figcaption><span>{i:02d} / {len(files_for(s)):02d}</span></figcaption></figure>'''
 
-def gallery(s, next_s):
+def gallery(s, next_s, output_root):
     a=files_for(s)
     content=f'''<div class="series-heading"><a class="back-link" href="../works.html">Works</a><span class="eyebrow">{escape(s['category'])} · {len(a):02d} photographs</span><h1>{escape(s['ko'])}</h1><p class="english-title" lang="en">{escape(s['en'])}</p></div><div class="series-statement">{paras(s['intro_ko'],'ko')}{paras(s['intro_en'],'en')}</div><div class="sequence">'''
     if s['slug']=='royal-tombs':
@@ -205,19 +208,19 @@ def gallery(s, next_s):
         if s['slug'] == 'sea-in-me' and i in (13, 15, 17, 19):
             content += '</div>'
     content += f'''</div><a class="next-project" href="{next_s['slug']}.html"><span>Next project</span><strong>{escape(next_s['ko'])}</strong><em>{escape(next_s['en'])}</em></a>'''
-    (ROOT/'works'/f"{s['slug']}.html").write_text(page(s['ko']+' / '+s['en'],content,1,'Works',s['ko']+' · '+s['en'],extra_head=SERIES_HEAD.get(s['slug'], '')),encoding='utf-8')
+    (output_root/'works'/f"{s['slug']}.html").write_text(page(s['ko']+' / '+s['en'],content,1,'Works',s['ko']+' · '+s['en'],extra_head=SERIES_HEAD.get(s['slug'], '')),encoding='utf-8')
 
 def work_row(s):
     a=files_for(s);cover=s['cover']
     return f'''<article class="work-row"><a class="work-image" href="works/{s['slug']}.html"><img src="assets/images/{cover}" alt="{escape(s['ko'])} 대표 작품" loading="lazy"></a><div class="work-copy"><span class="eyebrow">{escape(s['category'])} / {len(a):02d}</span><h3><a href="works/{s['slug']}.html">{escape(s['ko'])}</a></h3><p lang="en">{escape(s['en'])}</p><a class="view-link" href="works/{s['slug']}.html">작품 보기 <span aria-hidden="true">↗</span></a></div></article>'''
 
-def main():
-    (ROOT/'works').mkdir(exist_ok=True)
-    for i,s in enumerate(SERIES): gallery(s,SERIES[(i+1)%len(SERIES)])
+def generate(output_root):
+    (output_root/'works').mkdir(exist_ok=True)
+    for i,s in enumerate(SERIES): gallery(s,SERIES[(i+1)%len(SERIES)],output_root)
     home='''<section class="home-hero"><div class="home-copy"><span class="eyebrow">Photography by Seo Seok-Jang</span><h1>고요와 시간,<br>기억과 인간의 흔적</h1><p class="home-subtitle" lang="en">Silence, Time, Memory, and Human Traces</p><div class="home-manifesto"><p>진정한 여행은 가장 먼 곳이 아니라,<br>가장 오래 머문 자리에서 시작된다.</p><p lang="en">A true travel begins not in the farthest place,<br>but in the place where one has stayed the longest.</p></div><a class="view-link" href="works.html">작업 보기 <span aria-hidden="true">↗</span></a></div><figure class="home-image"><img src="assets/images/sea-in-me/sea-in-me-11.jpg" alt="파도가 바위에 스며드는 흑백 바다 풍경" width="2400" loading="eager"><figcaption>내 안의 바다 / The Sea in Me</figcaption></figure></section><section class="home-intro"><div class="home-intro-copy"><p>바다, 산사와 기도의 흔적, 고분 ...<br>한 장소에 머물며, 그곳에 남은 시간을 바라봅니다.</p><p class="home-intro-en" lang="en">The sea, mountain temples and traces of prayer, burial mounds ...<br>I stay with each place and look at the time it holds.</p></div><a href="works.html">Selected works <span aria-hidden="true">↗</span></a></section>'''
-    (ROOT/'index.html').write_text(page('서석장 사진 아카이브',home,description='사진작가 서석장의 작품 아카이브. 바다, 산사, 기도의 흔적, 한국의 문화유산.'),encoding='utf-8')
+    (output_root/'index.html').write_text(page('서석장 사진 아카이브',home,description='사진작가 서석장의 작품 아카이브. 바다, 산사, 기도의 흔적, 한국의 문화유산.'),encoding='utf-8')
     works='''<div class="page-heading"><span class="eyebrow">Archive</span><h1>Works</h1><p>고요와 시간, 기억과 인간의 흔적을 바라보는 사진 프로젝트.</p></div><section class="works-list" aria-label="사진 프로젝트">'''+''.join(work_row(s) for s in SERIES[:3])+'''<div class="works-divider"><span>한국의 문화유산</span><span lang="en">Korean Cultural Heritage</span></div>'''+''.join(work_row(s) for s in SERIES[3:])+'</section>'
-    (ROOT/'works.html').write_text(page('Works',works,current='Works',description='서석장의 사진 프로젝트 6개와 작품 95점.'),encoding='utf-8')
+    (output_root/'works.html').write_text(page('Works',works,current='Works',description='서석장의 사진 프로젝트 6개와 작품 95점.'),encoding='utf-8')
     # Preserve the supplied draft's author-approved-looking biography and CV entries verbatim pending fact review.
     for name,title in [('about','About'),('exhibitions','Exhibitions')]:
         old=(ROOT/'content'/f'{name}.html').read_text(encoding='utf-8')
@@ -229,9 +232,77 @@ def main():
             content=content.replace('<div class="text-page">','<div class="text-page about-page">',1)
             content=content.replace('</h1>', '</h1><div class="about-intro"><figure class="author-portrait"><img src="assets/images/profile-sjseo.jpg" alt="사진작가 서석장 흑백 인물 사진" width="1855" height="2400" loading="eager"></figure>', 1)
             content=content.replace('<div class="bi-divider">','</div><div class="bi-divider">',1)
-        (ROOT/f'{name}.html').write_text(page(title,content,current=title),encoding='utf-8')
+        (output_root/f'{name}.html').write_text(page(title,content,current=title),encoding='utf-8')
     contact='''<div class="text-page contact-page"><span class="eyebrow">Inquiries</span><h1 class="page-title">Contact</h1><p>전시, 소장, 출판 및 프로젝트 협업 문의는 이메일로 연락해 주세요.</p><p lang="en">For exhibition, collection, publishing, and project inquiries, please write by email.</p><a class="contact-email" href="mailto:sj.seo57@gmail.com">sj.seo57@gmail.com</a><p class="contact-note">서석장 · Seo Seok-Jang</p></div>'''
-    (ROOT/'contact.html').write_text(page('Contact',contact,current='Contact',description='서석장 사진작가 전시 및 출판 문의'),encoding='utf-8')
+    (output_root/'contact.html').write_text(page('Contact',contact,current='Contact',description='서석장 사진작가 전시 및 출판 문의'),encoding='utf-8')
+
+
+class RecoveryError(RuntimeError):
+    """Keep the temporary backup when publication cannot be fully restored."""
+
+
+def publish(staged_root, backup_root):
+    expected = [Path('works') / f"{s['slug']}.html" for s in SERIES]
+    expected += [Path(f'{name}.html') for name in
+                 ('index', 'works', 'about', 'exhibitions', 'contact')]
+    actual = {p.relative_to(staged_root) for p in staged_root.rglob('*.html')}
+    if actual != set(expected):
+        raise RuntimeError('Generated HTML file set does not match the expected pages')
+
+    changed = []
+    for rel in expected:
+        target = ROOT / rel
+        existed = target.exists()
+        if existed and target.read_bytes() == (staged_root / rel).read_bytes():
+            continue
+        changed.append((rel, existed))
+        if existed:
+            backup = backup_root / rel
+            backup.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(target, backup)
+
+    replaced = []
+    try:
+        for rel, existed in changed:
+            (ROOT / rel).parent.mkdir(parents=True, exist_ok=True)
+            os.replace(staged_root / rel, ROOT / rel)
+            replaced.append((rel, existed))
+    except BaseException as error:
+        failures = []
+        for rel, existed in reversed(replaced):
+            try:
+                if existed:
+                    # Preserve the original backup even if restoration fails.
+                    restore = staged_root / rel
+                    shutil.copy2(backup_root / rel, restore)
+                    os.replace(restore, ROOT / rel)
+                else:
+                    (ROOT / rel).unlink()
+            except BaseException as recovery_error:
+                failures.append(f'{rel}: {recovery_error}')
+        if failures:
+            raise RecoveryError(
+                f'Publication failed: {error}; restoration failed: '
+                + '; '.join(failures)
+                + f'; backups preserved at {backup_root}'
+            ) from error
+        raise
+
+
+def main():
+    temporary = Path(tempfile.mkdtemp(prefix='.build-tmp-', dir=ROOT))
+    keep_backup = False
+    try:
+        staged_root = temporary / 'generated'
+        staged_root.mkdir()
+        generate(staged_root)
+        publish(staged_root, temporary / 'backup')
+    except RecoveryError:
+        keep_backup = True
+        raise
+    finally:
+        if not keep_backup:
+            shutil.rmtree(temporary)
 
 if __name__=='__main__': main()
 
