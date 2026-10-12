@@ -194,6 +194,13 @@ def files_for(s):
     assert [int(f.stem.rsplit('-',1)[1]) for f in a] == list(range(1,len(a)+1)), s['slug']
     return a
 
+ALT_DESCRIPTIONS = {
+    "sea-in-me": {
+        1: "잔잔한 흑백 바다의 수평선 너머로 작은 바위섬이 보이는 풍경",
+        4: "흑백 바다와 해안의 낮은 건축물, 그 위로 길게 드리운 구름",
+    },
+}
+
 def plate(f, i, s):
     with Image.open(f) as im: w,h=im.size
     rel=f.relative_to(ROOT).as_posix()
@@ -201,8 +208,9 @@ def plate(f, i, s):
     extra_class = SERIES_PLATE_CLASSES.get(s['slug'], {}).get(i)
     if extra_class:
         orientation += ' ' + extra_class
+    alt_text = ALT_DESCRIPTIONS.get(s["slug"], {}).get(i, f"{s['ko']} 시리즈 작품 {i:02d}")
     # No fabricated place/year: a quiet plate number serves as a sequence marker.
-    return f'''<figure class="plate {orientation}"><img src="../{rel}" width="{w}" height="{h}" alt="{escape(s['ko'])} 시리즈 작품 {i:02d}" loading="lazy" decoding="async"><figcaption><span>{i:02d} / {len(files_for(s)):02d}</span></figcaption></figure>'''
+    return f'''<figure class="plate {orientation}"><img src="../{rel}" width="{w}" height="{h}" alt="{escape(alt_text, quote=True)}" loading="lazy" decoding="async"><figcaption><span>{i:02d} / {len(files_for(s)):02d}</span></figcaption></figure>'''
 
 def gallery(s, next_s, output_root):
     a=files_for(s)
