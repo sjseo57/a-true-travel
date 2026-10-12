@@ -168,7 +168,20 @@ def header(depth=0, current=""):
     nav += "".join(f'<a href="{p}{url}"' + (' aria-current="page"' if title == current else '') + f'>{title}</a>' for title,url in links)
     return f'''<header class="site-header"><a class="wordmark" href="{p}index.html" aria-label="A True Travel, home">A True Travel</a><nav aria-label="Main navigation">{nav}</nav></header>'''
 
-def page(title, body, depth=0, current="", description="", extra_head=""):
+SEO_META = {"index.html":["서석장 사진가 | Seo Seok-Jang Photography — A True Travel","사진가 서석장(Seo Seok-Jang)의 공식 웹사이트. 바다, 산사, 기도의 흔적과 한국 문화유산을 기록한 사진 연작과 전시를 소개합니다."],"about.html":["서석장 사진작가 소개 | Seo Seok-Jang — A True Travel","사진가 서석장(Seo Seok-Jang)의 작가 소개. 시간과 기억, 인간의 흔적을 탐구하는 사진 작업과 작가 노트."],"works.html":["서석장 사진 작품 | Works — A True Travel","사진작가 서석장의 사진 연작 6개: 내 안의 바다, 기도의 흔적들, 산사의 고요함, 가야고분군, 왕릉과 고분, 한국의 서원과 향교."],"exhibitions.html":["서석장 사진전 및 전시 이력 | Exhibitions — A True Travel","사진작가 서석장(Seo Seok-Jang)의 개인전과 단체전 등 전시 활동 기록."],"contact.html":["서석장 사진가 문의 | Contact — A True Travel","사진작가 서석장의 전시, 소장, 출판 및 협업 문의."]}
+PERSON_JSON_LD = "{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"서석장\",\"alternateName\":\"Seo Seok-Jang\",\"url\":\"https://www.atruetravel.com/\",\"jobTitle\":\"사진작가\",\"mainEntityOfPage\":\"https://www.atruetravel.com/about.html\"}"
+
+def page(title, body, depth=0, current="", description="", extra_head="", canonical_path=None):
+    if canonical_path is None:
+        canonical_path = {"서석장 사진 아카이브":"index.html","Works":"works.html","About":"about.html","Exhibitions":"exhibitions.html","Contact":"contact.html"}.get(title,"")
+    meta = SEO_META.get(canonical_path)
+    if meta:
+        title = meta[0].removesuffix(" — A True Travel")
+        description = meta[1]
+    canonical_url = "https://www.atruetravel.com/" + ("" if canonical_path == "index.html" else canonical_path)
+    canonical_tag = '<link rel="canonical" href="' + canonical_url + '">' if canonical_path else ""
+    schema_tag = '<script type="application/ld+json">' + PERSON_JSON_LD + '</script>' if canonical_path == "index.html" else ""
+    extra_head = canonical_tag + schema_tag + extra_head
     p = "../" * depth
     return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="{escape(description or title, quote=True)}"><title>{escape(title)} — A True Travel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="{p}assets/css/style-v12.css"><script src="{p}assets/js/navigation.js?v=20260926-12" defer></script>{extra_head}</head><body><a class="skip-link" href="#main">본문으로 이동</a>{header(depth,current)}<main id="main">{body}</main><footer class="site-footer"><span>A True Travel</span><span>© 2026 Seo Seok-Jang. All photographs and texts reserved.</span></footer></body></html>'''
 
@@ -208,7 +221,7 @@ def gallery(s, next_s, output_root):
         if s['slug'] == 'sea-in-me' and i in (13, 15, 17, 19):
             content += '</div>'
     content += f'''</div><a class="next-project" href="{next_s['slug']}.html"><span>Next project</span><strong>{escape(next_s['ko'])}</strong><em>{escape(next_s['en'])}</em></a>'''
-    (output_root/'works'/f"{s['slug']}.html").write_text(page(s['ko']+' / '+s['en'],content,1,'Works',s['ko']+' · '+s['en'],extra_head=SERIES_HEAD.get(s['slug'], '')),encoding='utf-8')
+    (output_root/'works'/f"{s['slug']}.html").write_text(page(s['ko']+' / '+s['en'],content,1,'Works',s['ko']+' · '+s['en'],extra_head=SERIES_HEAD.get(s['slug'], ''),canonical_path="works/"+s['slug']+".html"),encoding='utf-8')
 
 def work_row(s):
     a=files_for(s);cover=s['cover']
