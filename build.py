@@ -169,12 +169,21 @@ def header(depth=0, current=""):
     return f'''<header class="site-header"><a class="wordmark" href="{p}index.html" aria-label="A True Travel, home">A True Travel</a><nav aria-label="Main navigation">{nav}</nav></header>'''
 
 SEO_META = {"index.html":["서석장 사진가 | Seo Seok-Jang Photography — A True Travel","사진가 서석장(Seo Seok-Jang)의 공식 웹사이트. 바다, 산사, 기도의 흔적과 한국 문화유산을 기록한 사진 연작과 전시를 소개합니다."],"about.html":["서석장 사진작가 소개 | Seo Seok-Jang — A True Travel","사진가 서석장(Seo Seok-Jang)의 작가 소개. 시간과 기억, 인간의 흔적을 탐구하는 사진 작업과 작가 노트."],"works.html":["서석장 사진 작품 | Works — A True Travel","사진작가 서석장의 사진 연작 6개: 내 안의 바다, 기도의 흔적들, 산사의 고요함, 가야고분군, 왕릉과 고분, 한국의 서원과 향교."],"exhibitions.html":["서석장 사진전 및 전시 이력 | Exhibitions — A True Travel","사진작가 서석장(Seo Seok-Jang)의 개인전과 단체전 등 전시 활동 기록."],"contact.html":["서석장 사진가 문의 | Contact — A True Travel","사진작가 서석장의 전시, 소장, 출판 및 협업 문의."]}
+SERIES_SEO_META = {
+    "works/sea-in-me.html": ("내 안의 바다 | 서석장 사진 연작 · The Sea in Me", "사진가 서석장의 「내 안의 바다」. 변화하는 바다와 어부의 삶, 파도와 수평선에 스민 시간과 기억을 사진 19점으로 기록한 연작."),
+    "works/traces-of-prayer.html": ("기도의 흔적들 | 서석장 사진 연작 · Traces of Prayer", "사진가 서석장의 「기도의 흔적들」. 돌탑, 연등, 촛불과 봉헌물 등 사람들이 기도한 뒤 남긴 사물과 간절한 바람을 담은 사진 18점."),
+    "works/silence-temple.html": ("산사의 고요함 | 서석장 사진 연작 · Mountain Temple", "사진가 서석장의 「산사의 고요함」. 숲길과 문, 마당과 처마를 지나며 드러나는 산사의 경계, 빛, 그림자와 빈 공간을 담은 사진 16점."),
+    "works/gaya-tumuli.html": ("가야고분군 | 서석장 문화유산 사진 · Gaya Tumuli", "사진가 서석장의 「가야고분군」. 고분의 곡선과 능선, 안개와 나무, 산책하는 사람들이 어우러진 옛 유산과 오늘의 풍경을 담은 사진 12점."),
+    "works/royal-tombs.html": ("왕릉과 고분 | 서석장 흑백사진 · Royal Tombs", "사진가 서석장의 「왕릉과 고분」. 봉분과 나무, 사람의 거리를 선명한 흑백과 거친 입자 표현으로 대비해 시간과 기억을 탐구한 사진 18점."),
+    "works/seowon-hyanggyo.html": ("한국의 서원과 향교 | 서석장 문화유산 사진", "사진가 서석장의 「한국의 서원과 향교」. 전통 건축의 문과 마당, 사람들의 의례와 움직임을 흑백사진과 딥틱으로 기록한 사진 12점."),
+}
+
 PERSON_JSON_LD = "{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"서석장\",\"alternateName\":\"Seo Seok-Jang\",\"url\":\"https://www.atruetravel.com/\",\"jobTitle\":\"사진작가\",\"mainEntityOfPage\":\"https://www.atruetravel.com/about.html\"}"
 
 def page(title, body, depth=0, current="", description="", extra_head="", canonical_path=None):
     if canonical_path is None:
         canonical_path = {"서석장 사진 아카이브":"index.html","Works":"works.html","About":"about.html","Exhibitions":"exhibitions.html","Contact":"contact.html"}.get(title,"")
-    meta = SEO_META.get(canonical_path)
+    meta = SERIES_SEO_META.get(canonical_path) or SEO_META.get(canonical_path)
     if meta:
         title = meta[0].removesuffix(" — A True Travel")
         description = meta[1]
