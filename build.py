@@ -194,6 +194,15 @@ def files_for(s):
     assert [int(f.stem.rsplit('-',1)[1]) for f in a] == list(range(1,len(a)+1)), s['slug']
     return a
 
+SERIES_ALT_CONTEXT = {
+    "sea-in-me": "바다의 변화와 시간, 기억을 기록한 흑백 사진",
+    "traces-of-prayer": "기도를 마친 사람들이 남긴 사물과 간절한 바람을 탐구한 사진",
+    "silence-temple": "산사의 문과 마당, 경계와 빈 공간을 탐구한 사진",
+    "gaya-tumuli": "고분의 오랜 시간과 오늘의 일상이 만나는 풍경 사진",
+    "royal-tombs": "봉분과 능선의 형태, 시간의 기억을 탐구한 사진",
+    "seowon-hyanggyo": "전통 건축과 그 공간에서 이어지는 생활과 의례를 탐구한 사진",
+}
+
 ALT_DESCRIPTIONS = {
     "sea-in-me": {
         1: "잔잔한 흑백 바다의 수평선 너머로 작은 바위섬이 보이는 풍경",
@@ -208,7 +217,7 @@ def plate(f, i, s):
     extra_class = SERIES_PLATE_CLASSES.get(s['slug'], {}).get(i)
     if extra_class:
         orientation += ' ' + extra_class
-    alt_text = ALT_DESCRIPTIONS.get(s["slug"], {}).get(i, f"{s['ko']} 시리즈 작품 {i:02d}")
+    alt_text = ALT_DESCRIPTIONS.get(s["slug"], {}).get(i, f"{s['ko']} — {SERIES_ALT_CONTEXT[s['slug']]}, 작품 {i:02d}")
     # No fabricated place/year: a quiet plate number serves as a sequence marker.
     return f'''<figure class="plate {orientation}"><img src="../{rel}" width="{w}" height="{h}" alt="{escape(alt_text, quote=True)}" loading="lazy" decoding="async"><figcaption><span>{i:02d} / {len(files_for(s)):02d}</span></figcaption></figure>'''
 
