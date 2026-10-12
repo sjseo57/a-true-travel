@@ -191,7 +191,8 @@ def page(title, body, depth=0, current="", description="", extra_head="", canoni
     canonical_url = "https://www.atruetravel.com/" + ("" if canonical_path == "index.html" else canonical_path)
     canonical_tag = '<link rel="canonical" href="' + canonical_url + '">' if canonical_path else ""
     schema_tag = '<script type="application/ld+json">' + PERSON_JSON_LD + '</script>' if canonical_path == "index.html" else ""
-    extra_head = canonical_tag + schema_tag + extra_head
+    naver_tag = '<meta name="naver-site-verification" content="bcafe79e9535a1b90f38738731f5dd5050498dba" />' if canonical_path == "index.html" else ""
+    extra_head = canonical_tag + schema_tag + naver_tag + extra_head
     p = "../" * depth
     return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="{escape(description or title, quote=True)}"><title>{escape(title)} — A True Travel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="{p}assets/css/style-v12.css"><script src="{p}assets/js/navigation.js?v=20260926-12" defer></script>{extra_head}</head><body><a class="skip-link" href="#main">본문으로 이동</a>{header(depth,current)}<main id="main">{body}</main><footer class="site-footer"><span>A True Travel</span><span>© 2026 Seo Seok-Jang. All photographs and texts reserved.</span></footer></body></html>'''
 
