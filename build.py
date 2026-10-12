@@ -4,6 +4,7 @@ Run `python3 build.py` after adding or replacing a web JPEG. Requires Pillow.
 """
 from pathlib import Path
 from html import escape
+import json
 from PIL import Image
 import os
 import shutil
@@ -333,6 +334,30 @@ def plate(f, i, s):
     # No fabricated place/year: a quiet plate number serves as a sequence marker.
     return f'''<figure class="plate {orientation}"><img src="../{rel}" width="{w}" height="{h}" alt="{escape(alt_text, quote=True)}" loading="lazy" decoding="async"><figcaption><span>{i:02d} / {len(files_for(s)):02d}</span></figcaption></figure>'''
 
+def series_schema(s, images):
+    canonical = "https://www.atruetravel.com/works/" + s["slug"] + ".html"
+    return {
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        "@id": canonical + "#gallery",
+        "url": canonical,
+        "name": s["ko"] + " / " + s["en"],
+        "description": SERIES_SEO_META["works/" + s["slug"] + ".html"][1],
+        "inLanguage": "ko",
+        "author": {"@type": "Person", "name": "서석장", "alternateName": "Seo Seok-Jang", "url": "https://www.atruetravel.com/"},
+        "hasPart": [
+            {
+                "@type": "ImageObject",
+                "contentUrl": "https://www.atruetravel.com/" + f.relative_to(ROOT).as_posix(),
+                "description": ALT_DESCRIPTIONS.get(s["slug"], {}).get(i, f"{s['ko']} — {SERIES_ALT_CONTEXT[s['slug']]}, 작품 {i:02d}"),
+                "creator": {"@type": "Person", "name": "서석장"},
+                "creditText": "Seo Seok-Jang",
+                "copyrightNotice": "© 2026 Seo Seok-Jang. All rights reserved.",
+            }
+            for i, f in enumerate(images, 1)
+        ],
+    }
+
 def gallery(s, next_s, output_root):
     a=files_for(s)
     content=f'''<div class="series-heading"><a class="back-link" href="../works.html">Works</a><span class="eyebrow">{escape(s['category'])} · {len(a):02d} photographs</span><h1>{escape(s['ko'])}</h1><p class="english-title" lang="en">{escape(s['en'])}</p></div><div class="series-statement">{paras(s['intro_ko'],'ko')}{paras(s['intro_en'],'en')}</div><div class="sequence">'''
@@ -350,7 +375,7 @@ def gallery(s, next_s, output_root):
         if s['slug'] == 'sea-in-me' and i in (13, 15, 17, 19):
             content += '</div>'
     content += f'''</div><a class="next-project" href="{next_s['slug']}.html"><span>Next project</span><strong>{escape(next_s['ko'])}</strong><em>{escape(next_s['en'])}</em></a>'''
-    (output_root/'works'/f"{s['slug']}.html").write_text(page(s['ko']+' / '+s['en'],content,1,'Works',s['ko']+' · '+s['en'],extra_head=SERIES_HEAD.get(s['slug'], ''),canonical_path="works/"+s['slug']+".html"),encoding='utf-8')
+    (output_root/'works'/f"{s['slug']}.html").write_text(page(s['ko']+' / '+s['en'],content,1,'Works',s['ko']+' · '+s['en'],extra_head=SERIES_HEAD.get(s['slug'], '') + '<script type="application/ld+json">' + json.dumps(series_schema(s, a), ensure_ascii=False) + '</script>',canonical_path="works/"+s['slug']+".html"),encoding='utf-8')
 
 def work_row(s):
     a=files_for(s);cover=s['cover']
