@@ -140,3 +140,8 @@
   .about-page .author-portrait,.about-page .author-portrait img{width:4rem}
   .about-page .author-portrait img{height:5.2rem}
 }
+
+/* A personal signature after the bilingual About statement. Keep the source
+   illustration intact; crop blank paper and blend its light edges on screen. */
+.about-page .about-signature{width:140px;height:116px;margin:2.25rem 0 0;overflow:hidden;mix-blend-mode:multiply}
+.about-page .about-signature img{width:140px;max-width:none;height:auto;position:relative;top:-6px;filter:brightness(1.04)}
