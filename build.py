@@ -48,6 +48,16 @@ SERIES = [
              'From forest path to gate, and from gate to courtyard, the mountain temple reveals itself gradually, one threshold at a time.',
              'Following the light beneath the eaves, the darkness through a doorway, and an empty courtyard, emptiness comes to feel not like an absence, but like space in which to look.',
              'Rather than cataloguing the temple buildings, this series captures the changing views beyond each threshold and the empty spaces that invite a moment of pause.']),
+    dict(slug="unjusa-infrared", ko="적외선으로 본 운주사 천불천탑", en="Unjusa in Infrared: Stone Buddhas and Pagodas", category="Works",
+         cover="unjusa-infrared/unjusa-infrared-06.jpg", folder="unjusa-infrared", prefix="unjusa-infrared", count=6,
+         intro_ko=[
+             '처음 마주한 운주사의 돌부처와 돌탑은 낯설었다. 이목구비가 희미한 얼굴과 서로 다른 돌의 형태를 바라볼수록, 그 낯섦은 친근함으로 바뀌었다.',
+             '나는 적외선으로 이곳을 다시 바라보았다. 나뭇잎은 밝아지고 익숙한 색은 달라졌다. 돌과 나무 사이의 공간은 눈으로 보았을 때와 다른 깊이로 다가왔다.',
+             '다른 세상처럼 보이지만, 사진 속 돌과 나무는 내가 서 있던 그 자리에 있다. 이 사진들은 같은 세계가 보는 방식에 따라 얼마나 다르게 드러나는지 묻는다.'],
+         intro_en=[
+             'The stone Buddhas and pagodas of Unjusa felt unfamiliar at first. As I looked at their faint features and varied forms, that unfamiliarity gradually gave way to a sense of closeness.',
+             'I returned to these surroundings through infrared photography. Leaves grew luminous, familiar colours shifted, and the spaces between stone and tree took on a different depth.',
+             'Though it may appear to be another world, the stones and trees remain where I stood. These photographs ask how differently the same world can reveal itself through another way of seeing.']),
     dict(slug="gaya-tumuli", ko="가야고분군", en="Gaya Tumuli", category="Korean Cultural Heritage",
          cover="gaya-tumuli/Gaya_Tumuli-09.jpg", folder="gaya-tumuli", prefix="Gaya_Tumuli",
          intro_ko=[
@@ -85,6 +95,13 @@ SERIES_PLATE_CLASSES = {
     "royal-tombs": {5: "align-bottom-05", 7: "align-bottom-07"},
 }
 SERIES_HEAD = {
+    'unjusa-infrared': """
+<style>
+.sequence { grid-template-columns: minmax(0, 1fr); max-width: 1120px; }
+.sequence .plate.portrait { max-width: 650px; justify-self: center; }
+.sequence .plate img { max-height: 82svh; }
+</style>
+""",
     'sea-in-me': """
 <style>
 @media (min-width: 769px) {
@@ -165,7 +182,7 @@ def header(depth=0, current=""):
     p = "../" * depth
     links = [("About", "about.html"), ("Exhibitions", "exhibitions.html"), ("Contact", "contact.html")]
     menu = ''.join(
-        ('<span class="works-menu-label">한국의 문화유산</span>' if i == 3 else '') +
+        ('<span class="works-menu-label">한국의 문화유산</span>' if s['category'] == 'Korean Cultural Heritage' and (i == 0 or SERIES[i-1]['category'] != s['category']) else '') +
         f'<a href="{p}works/{s["slug"]}.html"><span>{escape(s["ko"])}</span><small lang="en">{escape(s["en"])}</small></a>'
         for i, s in enumerate(SERIES)
     )
@@ -173,8 +190,9 @@ def header(depth=0, current=""):
     nav += "".join(f'<a href="{p}{url}"' + (' aria-current="page"' if title == current else '') + f'>{title}</a>' for title,url in links)
     return f'''<header class="site-header"><a class="wordmark" href="{p}index.html" aria-label="A True Travel, home">A True Travel</a><nav aria-label="Main navigation">{nav}</nav></header>'''
 
-SEO_META = {"index.html":["서석장 사진가 | Seo Seok-Jang Photography — A True Travel","사진가 서석장(Seo Seok-Jang)의 공식 웹사이트. 바다, 산사, 기도의 흔적과 한국 문화유산을 기록한 사진 연작과 전시를 소개합니다."],"about.html":["서석장 사진작가 소개 | Seo Seok-Jang — A True Travel","사진가 서석장(Seo Seok-Jang)의 작가 소개. 시간과 기억, 인간의 흔적을 탐구하는 사진 작업과 작가 노트."],"works.html":["서석장 사진 작품 | Works — A True Travel","사진작가 서석장의 사진 연작 6개: 내 안의 바다, 기도의 흔적들, 산사의 고요함, 가야고분군, 왕릉과 고분, 한국의 서원과 향교."],"exhibitions.html":["서석장 사진전 및 전시 이력 | Exhibitions — A True Travel","사진작가 서석장(Seo Seok-Jang)의 개인전과 단체전 등 전시 활동 기록."],"contact.html":["서석장 사진가 문의 | Contact — A True Travel","사진작가 서석장의 전시, 소장, 출판 및 협업 문의."]}
+SEO_META = {"index.html":["서석장 사진가 | Seo Seok-Jang Photography — A True Travel","사진가 서석장(Seo Seok-Jang)의 공식 웹사이트. 바다, 산사, 기도의 흔적과 한국 문화유산을 기록한 사진 연작과 전시를 소개합니다."],"about.html":["서석장 사진작가 소개 | Seo Seok-Jang — A True Travel","사진가 서석장(Seo Seok-Jang)의 작가 소개. 시간과 기억, 인간의 흔적을 탐구하는 사진 작업과 작가 노트."],"works.html":["서석장 사진 작품 | Works — A True Travel","사진작가 서석장의 사진 연작 7개: 내 안의 바다, 기도의 흔적들, 산사의 고요함, 적외선으로 본 운주사 천불천탑, 가야고분군, 왕릉과 고분, 한국의 서원과 향교."],"exhibitions.html":["서석장 사진전 및 전시 이력 | Exhibitions — A True Travel","사진작가 서석장(Seo Seok-Jang)의 개인전과 단체전 등 전시 활동 기록."],"contact.html":["서석장 사진가 문의 | Contact — A True Travel","사진작가 서석장의 전시, 소장, 출판 및 협업 문의."]}
 SERIES_SEO_META = {
+    "works/unjusa-infrared.html": ("적외선으로 본 운주사 천불천탑 | 서석장 사진 연작", "사진가 서석장의 적외선 사진 연작 6점. 운주사의 돌부처와 돌탑, 밝게 드러나는 나무를 통해 같은 세계가 다르게 보이는 경험을 탐구합니다."),
     "works/sea-in-me.html": ("내 안의 바다 | 서석장 사진 연작 · The Sea in Me", "사진가 서석장의 「내 안의 바다」. 변화하는 바다와 어부의 삶, 파도와 수평선에 스민 시간과 기억을 사진 19점으로 기록한 연작."),
     "works/traces-of-prayer.html": ("기도의 흔적들 | 서석장 사진 연작 · Traces of Prayer", "사진가 서석장의 「기도의 흔적들」. 돌탑, 연등, 촛불과 봉헌물 등 사람들이 기도한 뒤 남긴 사물과 간절한 바람을 담은 사진 18점."),
     "works/silence-temple.html": ("산사의 고요함 | 서석장 사진 연작 · Mountain Temple", "사진가 서석장의 「산사의 고요함」. 숲길과 문, 마당과 처마를 지나며 드러나는 산사의 경계, 빛, 그림자와 빈 공간을 담은 사진 16점."),
@@ -206,11 +224,12 @@ def paras(items, lang):
 
 def files_for(s):
     a = sorted((IMG / s['folder']).rglob(f"{s['prefix']}-*.jpg"), key=lambda f:int(f.stem.rsplit('-',1)[1]))
-    assert len(a) in (12,16,18,19), (s['slug'], len(a))
+    assert len(a) == s['count'] if 'count' in s else len(a) in (12,16,18,19), (s['slug'], len(a))
     assert [int(f.stem.rsplit('-',1)[1]) for f in a] == list(range(1,len(a)+1)), s['slug']
     return a
 
 SERIES_ALT_CONTEXT = {
+    "unjusa-infrared": "운주사의 돌부처와 돌탑, 나무를 적외선으로 바라본 사진",
     "sea-in-me": "바다의 변화와 시간, 기억을 기록한 흑백 사진",
     "traces-of-prayer": "기도를 마친 사람들이 남긴 사물과 간절한 바람을 탐구한 사진",
     "silence-temple": "산사의 문과 마당, 경계와 빈 공간을 탐구한 사진",
@@ -220,6 +239,14 @@ SERIES_ALT_CONTEXT = {
 }
 
 ALT_DESCRIPTIONS = {
+    "unjusa-infrared": {
+        1: "주황빛으로 드러나는 나무를 배경으로 돌부처와 여러 석탑이 서 있는 운주사 적외선 풍경",
+        2: "밝은 나뭇잎 아래 나무줄기와 크기가 다른 석탑들이 겹쳐 보이는 운주사 적외선 사진",
+        3: "푸른 하늘과 소나무 가지 아래 서 있는 석탑을 세로 구도로 담은 운주사 적외선 사진",
+        4: "밝은 나무와 푸른 하늘 앞에 둥근 돌들이 층층이 쌓인 운주사의 석탑",
+        5: "밝은 숲과 하늘을 배경으로 거친 돌이 쌓인 석탑을 가까이 바라본 운주사 적외선 사진",
+        6: "넓은 바위 위 작은 석탑과 그 위로 뻗은 소나무 가지를 담은 운주사 적외선 사진",
+    },
     "sea-in-me": {
         1: "흐린 하늘 아래 잔잔한 바다와 수평선 위에 솟은 작은 바위섬",
         2: "옅은 구름이 펼쳐진 하늘과 먼 수평선에 낮게 이어진 섬들",
@@ -387,15 +414,16 @@ def gallery(s, next_s, output_root):
 
 def work_row(s):
     a=files_for(s);cover=s['cover']
-    return f'''<article class="work-row"><a class="work-image" href="works/{s['slug']}.html"><img src="assets/images/{cover}" alt="{escape(s['ko'])} 대표 작품" loading="lazy"></a><div class="work-copy"><span class="eyebrow">{escape(s['category'])} / {len(a):02d}</span><h3><a href="works/{s['slug']}.html">{escape(s['ko'])}</a></h3><p lang="en">{escape(s['en'])}</p><a class="view-link" href="works/{s['slug']}.html">작품 보기 <span aria-hidden="true">↗</span></a></div></article>'''
+    cover_style = ' style="height:auto;object-fit:contain"' if s['slug'] == 'unjusa-infrared' else ''
+    return f'''<article class="work-row"><a class="work-image" href="works/{s['slug']}.html"><img src="assets/images/{cover}" alt="{escape(s['ko'])} 대표 작품" loading="lazy"{cover_style}></a><div class="work-copy"><span class="eyebrow">{escape(s['category'])} / {len(a):02d}</span><h3><a href="works/{s['slug']}.html">{escape(s['ko'])}</a></h3><p lang="en">{escape(s['en'])}</p><a class="view-link" href="works/{s['slug']}.html">작품 보기 <span aria-hidden="true">↗</span></a></div></article>'''
 
 def generate(output_root):
     (output_root/'works').mkdir(exist_ok=True)
     for i,s in enumerate(SERIES): gallery(s,SERIES[(i+1)%len(SERIES)],output_root)
     home='''<section class="home-hero"><div class="home-copy"><span class="eyebrow">Photography by Seo Seok-Jang</span><h1>고요와 시간,<br>기억과 인간의 흔적</h1><p class="home-subtitle" lang="en">Silence, Time, Memory, and Human Traces</p><div class="home-manifesto"><p>진정한 여행은 가장 먼 곳이 아니라,<br>가장 오래 머문 자리에서 시작된다.</p><p lang="en">A true travel begins not in the farthest place,<br>but in the place where one has stayed the longest.</p></div><a class="view-link" href="works.html">작업 보기 <span aria-hidden="true">↗</span></a></div><figure class="home-image"><img src="assets/images/sea-in-me/sea-in-me-11.jpg" alt="파도가 바위에 스며드는 흑백 바다 풍경" width="2400" loading="eager"><figcaption>내 안의 바다 / The Sea in Me</figcaption></figure></section><section class="home-intro"><div class="home-intro-copy"><p>바다, 산사와 기도의 흔적, 고분 ...<br>한 장소에 머물며, 그곳에 남은 시간을 바라봅니다.</p><p class="home-intro-en" lang="en">The sea, mountain temples and traces of prayer, burial mounds ...<br>I stay with each place and look at the time it holds.</p></div><a href="works.html">Selected works <span aria-hidden="true">↗</span></a></section>'''
     (output_root/'index.html').write_text(page('서석장 사진 아카이브',home,description='사진작가 서석장의 작품 아카이브. 바다, 산사, 기도의 흔적, 한국의 문화유산.'),encoding='utf-8')
-    works='''<div class="page-heading"><span class="eyebrow">Archive</span><h1>Works</h1><p>고요와 시간, 기억과 인간의 흔적을 바라보는 사진 프로젝트.</p></div><section class="works-list" aria-label="사진 프로젝트">'''+''.join(work_row(s) for s in SERIES[:3])+'''<div class="works-divider"><span>한국의 문화유산</span><span lang="en">Korean Cultural Heritage</span></div>'''+''.join(work_row(s) for s in SERIES[3:])+'</section>'
-    (output_root/'works.html').write_text(page('Works',works,current='Works',description='서석장의 사진 프로젝트 6개와 작품 95점.'),encoding='utf-8')
+    works='''<div class="page-heading"><span class="eyebrow">Archive</span><h1>Works</h1><p>고요와 시간, 기억과 인간의 흔적을 바라보는 사진 프로젝트.</p></div><section class="works-list" aria-label="사진 프로젝트">'''+''.join(work_row(s) for s in SERIES if s['category'] == 'Works')+'''<div class="works-divider"><span>한국의 문화유산</span><span lang="en">Korean Cultural Heritage</span></div>'''+''.join(work_row(s) for s in SERIES if s['category'] == 'Korean Cultural Heritage')+'</section>'
+    (output_root/'works.html').write_text(page('Works',works,current='Works',description='서석장의 사진 프로젝트 7개와 작품 101점.'),encoding='utf-8')
     # Preserve the supplied draft's author-approved-looking biography and CV entries verbatim pending fact review.
     for name,title in [('about','About'),('exhibitions','Exhibitions')]:
         old=(ROOT/'content'/f'{name}.html').read_text(encoding='utf-8')
