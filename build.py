@@ -50,6 +50,7 @@ SERIES = [
              'Rather than cataloguing the temple buildings, this series captures the changing views beyond each threshold and the empty spaces that invite a moment of pause.']),
     dict(slug="unjusa-infrared", ko="적외선으로 본 운주사 천불천탑", en="Unjusa in Infrared: Stone Buddhas and Pagodas", category="Works",
          cover="unjusa-infrared/unjusa-infrared-06.jpg", folder="unjusa-infrared", prefix="unjusa-infrared", count=6,
+         image_versions={"unjusa-infrared-05.jpg": "4847f0e9016c", "unjusa-infrared-06.jpg": "44dc41164311"},
          intro_ko=[
              '처음 마주한 운주사의 돌부처와 돌탑은 낯설었다. 이목구비가 희미한 얼굴과 서로 다른 돌의 형태를 바라볼수록, 그 낯섦은 친근함으로 바뀌었다.',
              '나는 적외선으로 이곳을 다시 바라보았다. 나뭇잎은 밝아지고 익숙한 색은 달라졌다. 돌과 나무 사이의 공간은 눈으로 보았을 때와 다른 깊이로 다가왔다.',
@@ -356,9 +357,14 @@ ALT_DESCRIPTIONS = {
     },
 }
 
+def web_image_path(f, s):
+    rel = f.relative_to(ROOT).as_posix()
+    version = s.get('image_versions', {}).get(f.name)
+    return rel + (f'?v={version}' if version else '')
+
 def plate(f, i, s):
     with Image.open(f) as im: w,h=im.size
-    rel=f.relative_to(ROOT).as_posix()
+    rel=web_image_path(f, s)
     orientation='portrait' if h>w*1.14 else 'landscape'
     extra_class = SERIES_PLATE_CLASSES.get(s['slug'], {}).get(i)
     if extra_class:
@@ -381,7 +387,7 @@ def series_schema(s, images):
         "hasPart": [
             {
                 "@type": "ImageObject",
-                "contentUrl": "https://www.atruetravel.com/" + f.relative_to(ROOT).as_posix(),
+                "contentUrl": "https://www.atruetravel.com/" + web_image_path(f, s),
                 "description": ALT_DESCRIPTIONS.get(s["slug"], {}).get(i, f"{s['ko']} — {SERIES_ALT_CONTEXT[s['slug']]}, 작품 {i:02d}"),
                 "creator": {"@type": "Person", "name": "서석장"},
                 "creditText": "Seo Seok-Jang",
@@ -413,9 +419,9 @@ def gallery(s, next_s, output_root):
     (output_root/'works'/f"{s['slug']}.html").write_text(page(s['ko']+' / '+s['en'],content,1,'Works',s['ko']+' · '+s['en'],extra_head=SERIES_HEAD.get(s['slug'], '') + '<script type="application/ld+json">' + json.dumps(series_schema(s, a), ensure_ascii=False) + '</script>',canonical_path="works/"+s['slug']+".html"),encoding='utf-8')
 
 def work_row(s):
-    a=files_for(s);cover=s['cover']
+    a=files_for(s);cover=web_image_path(IMG / s['cover'], s)
     cover_style = ' style="height:auto;object-fit:contain"' if s['slug'] == 'unjusa-infrared' else ''
-    return f'''<article class="work-row"><a class="work-image" href="works/{s['slug']}.html"><img src="assets/images/{cover}" alt="{escape(s['ko'])} 대표 작품" loading="lazy"{cover_style}></a><div class="work-copy"><span class="eyebrow">{escape(s['category'])} / {len(a):02d}</span><h3><a href="works/{s['slug']}.html">{escape(s['ko'])}</a></h3><p lang="en">{escape(s['en'])}</p><a class="view-link" href="works/{s['slug']}.html">작품 보기 <span aria-hidden="true">↗</span></a></div></article>'''
+    return f'''<article class="work-row"><a class="work-image" href="works/{s['slug']}.html"><img src="{cover}" alt="{escape(s['ko'])} 대표 작품" loading="lazy"{cover_style}></a><div class="work-copy"><span class="eyebrow">{escape(s['category'])} / {len(a):02d}</span><h3><a href="works/{s['slug']}.html">{escape(s['ko'])}</a></h3><p lang="en">{escape(s['en'])}</p><a class="view-link" href="works/{s['slug']}.html">작품 보기 <span aria-hidden="true">↗</span></a></div></article>'''
 
 def generate(output_root):
     (output_root/'works').mkdir(exist_ok=True)
