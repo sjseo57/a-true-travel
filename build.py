@@ -447,6 +447,38 @@ def generate(output_root):
 
     copyright_body = '<div class="text-page"><span class="eyebrow">Copyright &amp; Usage Terms</span><h1 class="page-title">저작권 및 이용조건</h1><p>이 웹사이트에 게시된 모든 사진 작품의 저작권은 사진가 서석장(Seo Seok-Jang)에게 있습니다. 아래 조건은 모든 연작의 사진에 공통으로 적용됩니다.</p><p>© 2026 Seo Seok-Jang. All rights reserved.</p><h2>사진 이용조건</h2><p>사진의 무단 복제, 저장 후 재게시, 배포, 출판, 전시, 편집·변형 및 상업적 이용을 금지합니다. 출처나 작가명을 표시하는 것만으로 이용 허락을 대신할 수 없습니다.</p><p>사진을 이용하려면 이용 전에 작가의 명시적인 허락을 받아야 합니다. 이용 범위와 조건은 개별 문의를 통해 협의하며, 이 페이지는 사진의 자유 이용이나 자동 이용 허락을 부여하지 않습니다.</p><h2>사전 허락 및 이용 문의</h2><p><a href="contact.html">Contact 페이지</a>의 이메일로 작품명 또는 사진 URL, 이용 목적, 매체, 기간 및 상업적 이용 여부를 알려주세요. 허락받은 범위와 조건에 따라 이용해 주세요.</p><div lang="en"><h2>Copyright and usage terms</h2><p>All photographic works on this website are copyrighted by Seo Seok-Jang. These terms apply to photographs across all series.</p><p>Unauthorized copying, reposting, distribution, publication, exhibition, editing, modification, and commercial use are prohibited. Crediting the photographer does not replace permission.</p><p>Obtain the photographer\'s explicit permission before using a photograph. Usage scope and terms are agreed upon individually; this page does not grant an open license or automatic permission.</p><p>For prior permission, visit the <a href="contact.html">Contact page</a> and email the work title or image URL, intended use, medium, duration, and whether the use is commercial.</p></div></div>'
     (output_root/COPYRIGHT_PATH).write_text(page("저작권 및 이용조건", copyright_body, description="서석장 사진 작품의 공통 저작권 및 이용조건. 무단 사용 금지와 사전 허락 문의 안내.", canonical_path=COPYRIGHT_PATH), encoding="utf-8")
+    generate_sitemap(output_root)
+
+
+def generate_sitemap(output_root):
+    """Build the page and image sitemap from the same curated series as HTML."""
+    base = "https://www.atruetravel.com/"
+    fixed_pages = (
+        "", "about.html", "works.html", "exhibitions.html",
+        "contact.html", COPYRIGHT_PATH,
+    )
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+        'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
+    ]
+    for path in fixed_pages:
+        lines.extend(('  <url>', f'    <loc>{base}{path}</loc>', '  </url>'))
+    for series in SERIES:
+        lines.extend((
+            '  <url>',
+            f'    <loc>{base}works/{series["slug"]}.html</loc>',
+        ))
+        for photo in files_for(series):
+            image_url = base + photo.relative_to(ROOT).as_posix()
+            lines.append(
+                f'    <image:image><image:loc>{image_url}</image:loc></image:image>'
+            )
+        lines.append('  </url>')
+    lines.append('</urlset>')
+    (output_root / 'sitemap.xml').write_text(
+        '\n'.join(lines) + '\n', encoding='utf-8'
+    )
 
 
 class RecoveryError(RuntimeError):
@@ -458,8 +490,9 @@ def publish(staged_root, backup_root):
     expected += [Path(f'{name}.html') for name in
                  ('index', 'works', 'about', 'exhibitions', 'contact')]
     expected.append(Path(COPYRIGHT_PATH))
+    expected.append(Path('sitemap.xml'))
     actual = {p.relative_to(staged_root) for p in staged_root.rglob('*.html')}
-    if actual != set(expected):
+    if actual != {p for p in expected if p.suffix == '.html'}:
         raise RuntimeError('Generated HTML file set does not match the expected pages')
 
     changed = []
