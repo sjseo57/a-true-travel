@@ -16,6 +16,9 @@
     <loc>https://www.atruetravel.com/contact.html</loc>
   </url>
   <url>
+    <loc>https://www.atruetravel.com/copyright.html</loc>
+  </url>
+  <url>
     <loc>https://www.atruetravel.com/works/sea-in-me.html</loc>
     <image:image><image:loc>https://www.atruetravel.com/assets/images/sea-in-me/sea-in-me-01.jpg</image:loc></image:image>
     <image:image><image:loc>https://www.atruetravel.com/assets/images/sea-in-me/sea-in-me-02.jpg</image:loc></image:image>
@@ -78,6 +81,15 @@
     <image:image><image:loc>https://www.atruetravel.com/assets/images/silence-temple/silence-temple-16.jpg</image:loc></image:image>
   </url>
   <url>
+    <loc>https://www.atruetravel.com/works/unjusa-infrared.html</loc>
+    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-01.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-02.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-03.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-04.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-05.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-06.jpg</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.atruetravel.com/works/gaya-tumuli.html</loc>
     <image:image><image:loc>https://www.atruetravel.com/assets/images/gaya-tumuli/Gaya_Tumuli-01.jpg</image:loc></image:image>
     <image:image><image:loc>https://www.atruetravel.com/assets/images/gaya-tumuli/Gaya_Tumuli-02.jpg</image:loc></image:image>
@@ -127,14 +139,5 @@
     <image:image><image:loc>https://www.atruetravel.com/assets/images/seowon-hyanggyo/Seowon-Hyanggyo-10.jpg</image:loc></image:image>
     <image:image><image:loc>https://www.atruetravel.com/assets/images/seowon-hyanggyo/Seowon-Hyanggyo-11.jpg</image:loc></image:image>
     <image:image><image:loc>https://www.atruetravel.com/assets/images/seowon-hyanggyo/Seowon-Hyanggyo-12.jpg</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://www.atruetravel.com/works/unjusa-infrared.html</loc>
-    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-01.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-02.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-03.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-04.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-05.jpg</image:loc></image:image>
-    <image:image><image:loc>https://www.atruetravel.com/assets/images/unjusa-infrared/unjusa-infrared-06.jpg</image:loc></image:image>
   </url>
 </urlset>
