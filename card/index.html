@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>서석장 · Seo Seok-Jang | A True Travel</title>
+<style>
+  :root { color-scheme: light; background: #f8f0e2; color: #302a24; }
+  body { margin: 0; font-family: Georgia, "KoPub Batang", Batang, serif; }
+  main { max-width: 30rem; margin: 0 auto; padding: 3rem 1.25rem; }
+  header { text-align: center; }
+  .brand { font-style: italic; letter-spacing: .16em; }
+  h1 { margin: 1.25rem 0 .5rem; font-size: 2.5rem; font-weight: 400; letter-spacing: .16em; }
+  .name { margin: 0 0 1.75rem; letter-spacing: .07em; }
+  img { display: block; width: 100%; height: auto; }
+  .links { display: grid; gap: .65rem; margin-top: 1.5rem; }
+  .links a, button { display: block; padding: .8rem; border: 1px solid #746553;
+    border-radius: .25rem; color: inherit; background: transparent; font: inherit; text-align: center; }
+  button { background: #302a24; color: #fff8ec; cursor: pointer; }
+  [hidden] { display: none !important; }
+  #notice { text-align: center; font-size: .9rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="brand" lang="en">A True Travel</p>
+    <h1>서석장</h1>
+    <p class="name" lang="en">Seo Seok-Jang · Photography</p>
+  </header>
+  <img src="boat.jpg" width="1063" height="145" alt="반짝이는 바다를 지나는 흑백 배 사진">
+  <div class="links">
+    <a id="phone" hidden></a>
+    <a href="mailto:sj.seo57@gmail.com">sj.seo57@gmail.com</a>
+    <button id="save" type="button" hidden>연락처 저장 · Save contact</button>
+    <a href="/works.html">작품 보기 · View photographs</a>
+  </div>
+  <p id="notice" role="status">전화번호와 연락처 저장은 명함 QR로 열 수 있습니다.</p>
+</main>
+<script>
+  const encrypted = 'UkRGMyhcRGXpX8n5eCv2oJljfWfCPI13rt16YxMgSOgWp6LbNrjl3h96p_4';
+  const phone = document.getElementById('phone');
+  const save = document.getElementById('save');
+  const notice = document.getElementById('notice');
+
+  function decode(value) {
+    return Uint8Array.from(atob(value.replaceAll('-', '+').replaceAll('_', '/')),
+      character => character.charCodeAt(0));
+  }
+
+  async function openCard() {
+    const fragment = location.hash.slice(1);
+    if (!/^[A-Za-z0-9_-]{22}$/.test(fragment)) return;
+    const data = decode(encrypted);
+    const key = await crypto.subtle.importKey('raw', decode(fragment), 'AES-GCM', false, ['decrypt']);
+    const plaintext = await crypto.subtle.decrypt({name: 'AES-GCM', iv: data.slice(0, 12)},
+      key, data.slice(12));
+    const number = new TextDecoder().decode(plaintext);
+    const dial = number.replace(/[ -]/g, '');
+    phone.href = 'tel:' + dial;
+    phone.textContent = number;
+    phone.hidden = false;
+    save.hidden = false;
+    notice.hidden = true;
+
+    save.addEventListener('click', () => {
+      const card = [
+        'BEGIN:VCARD', 'VERSION:3.0', 'N:서;석장;;;', 'FN:서석장 (Seo Seok-Jang)',
+        'ORG:A True Travel', 'TEL;TYPE=CELL:' + dial, 'EMAIL:sj.seo57@gmail.com',
+        'URL:https://www.atruetravel.com/', 'END:VCARD', ''
+      ].join('\r\n');
+      const url = URL.createObjectURL(new Blob([card], {type: 'text/vcard;charset=utf-8'}));
+      const download = document.createElement('a');
+      download.href = url;
+      download.download = 'Seo-Seok-Jang.vcf';
+      document.body.append(download);
+      download.click();
+      download.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    });
+  }
+
+  openCard().catch(() => {
+    notice.textContent = '연락처를 열 수 없습니다. 명함 QR을 다시 스캔해 주세요.';
+  });
+</script>
+</body>
+</html>
