@@ -17,6 +17,21 @@ COPYRIGHT_PATH = "copyright.html"
 LICENSE_URL = "https://www.atruetravel.com/" + COPYRIGHT_PATH
 ACQUIRE_LICENSE_URL = "https://www.atruetravel.com/contact.html"
 
+# Shared by the 13 generated pages. Keep the standalone 404 tag in sync.
+# Redirects and the private QR card intentionally remain unmeasured.
+GA4_HEAD = """<!-- Google tag (gtag.js): basic GA4 measurement only -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L17ELB42NR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L17ELB42NR', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+"""
+
 SERIES = [
     dict(slug="sea-in-me", ko="내 안의 바다", en="The Sea in Me", category="Works",
          cover="sea-in-me/sea-in-me-11.jpg", folder="sea-in-me", prefix="sea-in-me",
@@ -218,7 +233,7 @@ def page(title, body, depth=0, current="", description="", extra_head="", canoni
     extra_head = canonical_tag + schema_tag + naver_tag + extra_head
     p = "../" * depth
     style_version = "?v=20261017-logo" if current == "About" else ""
-    return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="{escape(description or title, quote=True)}"><title>{escape(title)} — A True Travel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="{p}assets/css/style-v12.css{style_version}"><script src="{p}assets/js/navigation.js?v=20260926-12" defer></script>{extra_head}</head><body><a class="skip-link" href="#main">본문으로 이동</a>{header(depth,current)}<main id="main">{body}</main><footer class="site-footer"><span>A True Travel</span><span>© 2026 Seo Seok-Jang. All photographs and texts reserved.</span></footer></body></html>'''
+    return f'''<!doctype html><html lang="ko"><head><meta charset="utf-8">{GA4_HEAD}<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="{escape(description or title, quote=True)}"><title>{escape(title)} — A True Travel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="{p}assets/css/style-v12.css{style_version}"><script src="{p}assets/js/navigation.js?v=20260926-12" defer></script>{extra_head}</head><body><a class="skip-link" href="#main">본문으로 이동</a>{header(depth,current)}<main id="main">{body}</main><footer class="site-footer"><span>A True Travel</span><span>© 2026 Seo Seok-Jang. All photographs and texts reserved.</span></footer></body></html>'''
 
 def paras(items, lang):
     return f'<div class="statement" lang="{lang}">' + ''.join(f'<p>{escape(x)}</p>' for x in items) + '</div>'
