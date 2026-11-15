@@ -145,3 +145,11 @@
    illustration intact; crop blank paper and blend its light edges on screen. */
 .about-page .about-signature{width:140px;height:116px;margin:2.25rem 0 0;overflow:hidden;mix-blend-mode:multiply}
 .about-page .about-signature img{width:140px;max-width:none;height:auto;position:relative;top:-6px;filter:brightness(1.04)}
+
+
+/* Home: one bilingual statement, with Korean leading the introduction. */
+.home-page .home-brand{font:500 .8rem/1.5 var(--serif);letter-spacing:.14em}
+.home-page .home-byline{margin-top:.4rem;text-transform:none;letter-spacing:.035em}
+.home-page .home-copy h1{font-size:clamp(1.15rem,1.75vw,1.75rem);line-height:1.75;letter-spacing:-.045em;margin:1.8rem 0 1rem}
+.home-page .home-subtitle{font:italic clamp(.85rem,1.05vw,1rem)/1.75 Georgia,serif;letter-spacing:0;margin:0 0 2.2rem;color:var(--muted)}
+@media(max-width:400px){.home-page .home-copy h1{font-size:clamp(1rem,4.72vw,1.15rem)}}
